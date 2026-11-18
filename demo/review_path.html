@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeliefView four-hour review path</title>
+<style>
+:root { color-scheme: light dark; --fg:#1b1b1b; --bg:#fbfbf9; --mut:#5c5c5c; --line:#d5d5d0; --card:#ffffff; --warn:#8a4b00; --acc:#0072B2; }
+@media (prefers-color-scheme: dark) { :root { --fg:#e9e9e6; --bg:#17181a; --mut:#a5a5a0; --line:#3a3b3e; --card:#1f2023; --warn:#f0b35c; --acc:#6cb8e6; } }
+* { box-sizing: border-box; }
+body { font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--fg); background: var(--bg); margin: 0; }
+main { max-width: 1180px; margin: 0 auto; padding: 20px 20px 60px; }
+h1 { font-size: 1.6rem; margin: 0.2em 0; } h2 { font-size: 1.2rem; margin: 1.8em 0 0.4em; border-top: 1px solid var(--line); padding-top: 0.9em; }
+h3 { font-size: 1rem; margin: 1.1em 0 0.3em; }
+p, li { max-width: 78ch; } .mut { color: var(--mut); } .small { font-size: 0.86rem; }
+.banner { border: 1px solid var(--warn); color: var(--warn); border-radius: 6px; padding: 8px 12px; margin: 10px 0; font-weight: 600; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
+.scroll { overflow-x: auto; } table { border-collapse: collapse; font-size: 0.88rem; margin: 8px 0; font-variant-numeric: tabular-nums; }
+th, td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; white-space: nowrap; } th { white-space: normal; min-width: 9ch; vertical-align: bottom; background: color-mix(in srgb, var(--line) 35%, transparent); }
+td.wrap { white-space: normal; min-width: 18ch; } tr.hl td { font-weight: 600; }
+.tag { display: inline-block; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: 0.78rem; color: var(--mut); }
+.tag.no { border-color: var(--warn); color: var(--warn); }
+video { width: 100%; max-width: 900px; background: #fff; border: 1px solid var(--line); border-radius: 4px; display: block; }
+.ctl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; max-width: 900px; }
+.ctl input[type=range] { flex: 1 1 260px; } button, select { font: inherit; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; }
+.readout { font-family: ui-monospace, Menlo, monospace; font-size: 0.86rem; }
+dl.legend { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; max-width: 900px; } dl.legend dt { font-weight: 600; } dl.legend dd { margin: 0; }
+.sw { display: inline-block; width: 0.9em; height: 0.9em; vertical-align: -0.1em; margin-right: 5px; border: 1px solid #0006; }
+a { color: var(--acc); } pre { white-space: pre; overflow-x: auto; font-size: 0.8rem; line-height: 1.35; }
+</style>
+</head>
+<body>
+<main>
+<p class="small"><a href="index.html">&larr; back to the demo</a> &middot; plain-text copy of <a href="../REVIEW_PATH.md">../REVIEW_PATH.md</a>, inlined when the demo was generated</p>
+<div class="banner">Synthetic 2D simulation only. Not a result about any real drone.</div>
+<pre># Four-hour review path (Reid&#x27;s own time)
+
+Everything here uses synthetic data. Budget: 240 minutes. Stop and cut any claim you still cannot explain at the end.
+
+## 0:00-0:20 Orient (20 min)
+- Open `demo/index.html` in a browser (double-click; no server or network). Pause and scrub both clips and read the legend.
+- Read `README.md` (the short landing page), then `docs/TECHNICAL_REPORT.md` (the full report) top to bottom. Open `results/v2/map.png`, `results/v2/comparison.png`. v2 is the headline; files directly in `results/` are the earlier v1 record.
+- Run the one command and watch it finish: `make all` (tests first, then it rebuilds the v2 tables, figures, animations and demo from the saved records; see README &quot;Run it locally&quot; for runtime). It does not rerun the v2 final experiment: that ran once, and `make v2-final` refuses a second run.
+
+## 0:20-1:10 Hand-calculate one missed-detection update (50 min)
+1. Open `tests/test_belief.py::test_analytic_posterior_with_outside_mass`.
+2. On paper: 0.3 mass in a visible cell with P(detect)=q, 0.5 mass hidden behind a rock, 0.2 already outside. Write the posterior of each of the three after a miss (Z = 0.3(1-q) + 0.5 + 0.2).
+3. Use q = 0.64 (the visible cell) from `geo.pd_field(...)` (run the REPL snippet in README &quot;Hand-check&quot;) and verify your numbers against the test&#x27;s output.
+4. Then answer: why does the hidden cell *rise*? Why does `outside` rise?
+
+## 1:10-2:10 Change one assumption and rerun (60 min)
+Pick ONE:
+- Motion: `MotionAssumption.p_stop` (0.03) in `beliefview/config.py`, or `edge_exit_rate`.
+- Sensor: `SensorParams.foliage_factor` in a scenario spec in `beliefview/experiment.py`.
+Then run a small, fast check that does NOT touch the frozen test results:
+The frozen runs refuse to run after a frozen-config change (that is intended), and the v2 final run cannot be repeated. Instead use scratch work on the dev split, which leaves the code and the frozen results alone:
+`.venv/bin/python scripts/what_if.py --scenario B_motion_mismatch --n 20 --set assumed_motion.p_stop=0.1`
+Record before/after reacquired-by-deadline for BeliefView and the baselines in your own notes, and write one sentence on *why* it moved (or did not).
+
+## 2:10-2:50 Explain one planner decision (40 min)
+- Play the representative clip in `demo/index.html` (or `results/v2/animation_representative.mp4`); step frame by frame and pause where the green star (chosen viewpoint) is far from the brightest heat.
+- Run `.venv/bin/python scripts/explain_decision.py --scenario A_matched --idx 0 --t 4` to print the candidate table (gain, travel steps, score) for that step.
+- Explain in two sentences why candidate X beat candidate Y (gain vs `lam * travel_steps`). In v2, lam = 0.004: each step of travel costs 0.004 of score, so a viewpoint 10 travel steps away must promise at least 0.04 more reacquisition probability within the 12-step horizon than holding position. lam was chosen on separate validation episodes as the largest of {0.0005, 0.001, 0.002, 0.004} whose reacquired fraction was within 0.03 of the best (see `results/v2/results.md`).
+- Rerun the same command with `--config v1` (the earlier record, lam = 0, where travel had no explicit cost) and say what changed in the score column and, if it did, in the choice.
+
+## 2:50-3:20 Failure and limitation (30 min)
+- Play the failure clip in `demo/index.html` (or `results/v2/animation_failure.mp4`) and read the &quot;Failures and honest limitations&quot; section of `docs/TECHNICAL_REPORT.md` (the README has a shorter list under the same heading).
+- Write down: one model-mismatch failure (from your own reading of the results), and one limitation of the 2D world.
+
+## 3:20-4:00 Quiz and cut list (40 min)
+- Answer `QUIZ.md` without notes, then check `QUIZ_ANSWER_KEY.md`.
+- Strike from your talk anything you could not answer. Reserve Nov 23 for rehearsal; do not add features.
+
+## Things to hold in mind
+- The experiment is a synthetic 2D simulation; Claude helped write the code; Codex consulted Muse, Grok Bot and Antigravity and recorded their synthetic-only critiques in `REVIEW_NOTES.md` (an internal record, not published in this snapshot); Instinct was not consulted; Codex completed the independent local review, with its verdict recorded there (not published here).
+- Nothing in this path counts as done until you have done it. The checklist in `CONTRIBUTIONS.md` is yours to tick.
+- Do not describe results as drone performance.
+</pre>
+</main>
+</body>
+</html>

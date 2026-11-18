@@ -1,0 +1,287 @@
+{
+  "evaluationRole": "FINAL AUDIT: fresh split, frozen model, no tuning",
+  "modelSha256": "6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2",
+  "sourceSha256": "435706772150a223547eebf828e8330e31c4a84a90caf6e5c357673afa8d782a",
+  "datasetAuditSha256": "a82c53e02faf91492bc0f4362d7d5d48a450395993c7bfdecd5221bca30e9256",
+  "dataCache": "generated",
+  "split": {
+    "worldSeeds": [
+      60000,
+      60099
+    ],
+    "subjectSeeds": [
+      65000,
+      65099
+    ],
+    "episodes": 100,
+    "samples": 3160,
+    "truthOutsideGrid": 11
+  },
+  "calibrationUsed": {
+    "ml_region_mass_level": 0.940534,
+    "kalman_radius_scale": 5.0816,
+    "fit_on": "val only (from the dev run)"
+  },
+  "offline": {
+    "all": {
+      "samples": 3160,
+      "episodes": 100,
+      "truth_outside_grid": 11,
+      "nll_nats_ml": 3.9790269924180404,
+      "nll_nats_tracker_gaussian_uncalibrated": 11.196134189456645,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 3160,
+        "mean": 12.407343844467267,
+        "median": 8.28763683191119,
+        "p90": 28.711597818124
+      },
+      "err_m_ml_map_cell": {
+        "n": 3160,
+        "mean": 13.380987931734197,
+        "median": 8.405787276265922,
+        "p90": 31.13694397212512
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 3160,
+        "mean": 9.429135264956658,
+        "median": 5.9614047564484665,
+        "p90": 20.658022023469695
+      },
+      "err_m_kalman_point": {
+        "n": 3160,
+        "mean": 37.47405365382049,
+        "median": 14.29386507807011,
+        "p90": 111.23492431873287
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9560126582278481,
+        "mean_area_m2": 2451.2962025316456
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9481012658227848,
+        "mean_area_m2": 2302.0303797468355,
+        "median_area_m2": 976.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.16835443037974684
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9484177215189873,
+        "mean_area_m2": 171040.08351293855,
+        "median_area_m2": 4591.1133580060205
+      },
+      "mean_peaks_ge10pct": 1.7322784810126581,
+      "frac_two_or_more_peaks_ge10pct": 0.5715189873417722
+    },
+    "hide": {
+      "samples": 509,
+      "episodes": 92,
+      "truth_outside_grid": 0,
+      "nll_nats_ml": 3.824713645747177,
+      "nll_nats_tracker_gaussian_uncalibrated": 10.488054823396388,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 509,
+        "mean": 11.031952153888287,
+        "median": 7.501592990425598,
+        "p90": 25.395633882744573
+      },
+      "err_m_ml_map_cell": {
+        "n": 509,
+        "mean": 12.613963738573919,
+        "median": 7.563525807214607,
+        "p90": 29.52473277709908
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 509,
+        "mean": 8.38827334131033,
+        "median": 5.516409592061908,
+        "p90": 18.362657496896773
+      },
+      "err_m_kalman_point": {
+        "n": 509,
+        "mean": 26.237207568814306,
+        "median": 12.862964202049264,
+        "p90": 71.03260031563315
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9901768172888016,
+        "mean_area_m2": 2250.7819253438115
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9862475442043221,
+        "mean_area_m2": 2110.9626719056973,
+        "median_area_m2": 1040.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.18467583497053044
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9803536345776032,
+        "mean_area_m2": 62370.96720811531,
+        "median_area_m2": 6839.598271042546
+      },
+      "mean_peaks_ge10pct": 1.8290766208251474,
+      "frac_two_or_more_peaks_ge10pct": 0.6483300589390962
+    },
+    "turn": {
+      "samples": 2515,
+      "episodes": 100,
+      "truth_outside_grid": 11,
+      "nll_nats_ml": 4.456036108999444,
+      "nll_nats_tracker_gaussian_uncalibrated": 12.019171995400814,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 2515,
+        "mean": 14.782677901534473,
+        "median": 10.975123840742357,
+        "p90": 31.023040411061356
+      },
+      "err_m_ml_map_cell": {
+        "n": 2515,
+        "mean": 15.778293172999932,
+        "median": 10.986086045260816,
+        "p90": 34.8006527110376
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 2515,
+        "mean": 10.926428346287487,
+        "median": 7.201718739286722,
+        "p90": 23.372841217038772
+      },
+      "err_m_kalman_point": {
+        "n": 2515,
+        "mean": 45.812777982604516,
+        "median": 23.881684866364644,
+        "p90": 121.09062000102288
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9491053677932405,
+        "mean_area_m2": 2998.7180914512924
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9399602385685885,
+        "mean_area_m2": 2816.693439363817,
+        "median_area_m2": 1792.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.17296222664015903
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9562624254473161,
+        "mean_area_m2": 214755.096557504,
+        "median_area_m2": 12654.983392377437
+      },
+      "mean_peaks_ge10pct": 1.8755467196819084,
+      "frac_two_or_more_peaks_ge10pct": 0.6827037773359841
+    },
+    "long": {
+      "samples": 1397,
+      "episodes": 72,
+      "truth_outside_grid": 11,
+      "nll_nats_ml": 5.410217811702074,
+      "nll_nats_tracker_gaussian_uncalibrated": 11.769610035319001,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 1397,
+        "mean": 21.056872111595155,
+        "median": 19.061288758437875,
+        "p90": 37.44215234603109
+      },
+      "err_m_ml_map_cell": {
+        "n": 1397,
+        "mean": 22.68873686582367,
+        "median": 18.205378970549425,
+        "p90": 44.586277687354844
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 1397,
+        "mean": 15.333869079147783,
+        "median": 11.30536131317647,
+        "p90": 29.910383615912515
+      },
+      "err_m_kalman_point": {
+        "n": 1397,
+        "mean": 74.44501524365398,
+        "median": 63.45832332495479,
+        "p90": 142.25877073801206
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9491768074445239,
+        "mean_area_m2": 4906.4795991410165
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9420186113099499,
+        "mean_area_m2": 4608.2977809591985,
+        "median_area_m2": 4464.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.19541875447387258
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9985683607730852,
+        "mean_area_m2": 384808.35603144986,
+        "median_area_m2": 120417.76864017484
+      },
+      "mean_peaks_ge10pct": 2.1531853972798856,
+      "frac_two_or_more_peaks_ge10pct": 0.8647100930565498
+    },
+    "reacq": {
+      "samples": 1296,
+      "episodes": 97,
+      "truth_outside_grid": 0,
+      "nll_nats_ml": 2.895302466623741,
+      "nll_nats_tracker_gaussian_uncalibrated": 9.740152057348684,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 1296,
+        "mean": 5.346609714936565,
+        "median": 4.2042751371847435,
+        "p90": 10.492039502361067
+      },
+      "err_m_ml_map_cell": {
+        "n": 1296,
+        "mean": 5.930001892038161,
+        "median": 4.642169317092231,
+        "p90": 11.843500320476322
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 1296,
+        "mean": 4.606399883878147,
+        "median": 4.063422989551819,
+        "p90": 8.454172284663686
+      },
+      "err_m_kalman_point": {
+        "n": 1296,
+        "mean": 7.984688916313586,
+        "median": 6.588240240885618,
+        "p90": 15.82891503171432
+      },
+      "region95_raw_ml": {
+        "coverage": 0.966820987654321,
+        "mean_area_m2": 623.4691358024692
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9606481481481481,
+        "mean_area_m2": 581.8271604938271,
+        "median_area_m2": 408.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.2052469135802469
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9591049382716049,
+        "mean_area_m2": 3173.330183004872,
+        "median_area_m2": 971.825851812818
+      },
+      "mean_peaks_ge10pct": 1.4166666666666667,
+      "frac_two_or_more_peaks_ge10pct": 0.36882716049382713
+    },
+    "_calibration": {
+      "ml_region_mass_level": 0.940534,
+      "kalman_radius_scale": 5.0816,
+      "raw_ml_95_mass_coverage_all": 0.9560126582278481
+    }
+  }
+}

@@ -1,0 +1,5 @@
+scenario,baseline,n_pairs,d_found,d_found_lo,d_found_hi,d_rmst,d_rmst_lo,d_rmst_hi,d_distance,d_distance_lo,d_distance_hi,both_found,belief_only_found,baseline_only_found,neither_found
+A_matched,belief_lam0,200,0.0250,-0.0101,0.0600,-1.3800,-3.2600,0.4351,-14.7678,-18.4102,-11.2236,110,10,5,75
+B_motion_mismatch,belief_lam0,200,-0.0050,-0.0400,0.0350,-0.3400,-2.4652,1.8205,-11.7419,-15.2279,-8.3393,128,7,8,57
+C_sensor_mismatch,belief_lam0,200,-0.0400,-0.0850,0.0000,1.3750,-0.8450,3.5801,-13.3814,-17.1261,-9.7520,95,6,14,85
+D_exit_mismatch,belief_lam0,200,0.0100,-0.0100,0.0300,0.1650,-0.4600,0.8500,-19.6599,-23.0547,-16.3069,82,3,1,114

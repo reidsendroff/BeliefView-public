@@ -1,0 +1,13 @@
+{
+  "what": "Marks the single v2 final (inferential) run. Written BEFORE the first final episode is generated.",
+  "started_at": "2026-11-14T17:57:30-05:00",
+  "protocol_hash": "005759e5dd0fd210",
+  "config_hash": "a69bfac2342ac108",
+  "core_source_checksum": "964103366f5b5762",
+  "git_revision": "38ebecd + uncommitted changes in beliefview/",
+  "split": "v2_final",
+  "split_id": 4,
+  "n_per_scenario": 200,
+  "completed_at": "2026-11-14T18:16:46-05:00",
+  "episode_wall_seconds": 1155
+}

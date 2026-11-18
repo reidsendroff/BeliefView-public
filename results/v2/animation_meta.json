@@ -1,0 +1,694 @@
+{
+ "note": "Illustrative episodes selected by outcome (representative = scenario A BeliefView success with the median detection time; failure = first scenario B BeliefView timeout whose subject was still inside). Per-frame numbers are from the deterministic replay used to render the video.",
+ "episodes": [
+  {
+   "kind": "representative",
+   "file": "animation_representative.mp4",
+   "scenario": "A_matched",
+   "split": "v2_final",
+   "idx": 23,
+   "behavior": "conceal",
+   "found": true,
+   "t_detect": 13,
+   "p_out_final": null,
+   "truth_left": null,
+   "declared_left": null,
+   "distance": 19.500000000000004,
+   "planner_lam": 0.004,
+   "fps": 6,
+   "n_frames": 13,
+   "frames": [
+    {
+     "t": 1,
+     "p_out": 0.0173,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 2,
+     "p_out": 0.0195,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 3,
+     "p_out": 0.0219,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 4,
+     "p_out": 0.0245,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 5,
+     "p_out": 0.0272,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 6,
+     "p_out": 0.0303,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 7,
+     "p_out": 0.034,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 8,
+     "p_out": 0.0383,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 9,
+     "p_out": 0.0433,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 10,
+     "p_out": 0.0496,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 11,
+     "p_out": 0.0554,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 12,
+     "p_out": 0.061,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 13,
+     "p_out": 0.0,
+     "look": true,
+     "detected": true,
+     "subject_inside": true
+    }
+   ]
+  },
+  {
+   "kind": "failure",
+   "file": "animation_failure.mp4",
+   "scenario": "B_motion_mismatch",
+   "split": "v2_final",
+   "idx": 0,
+   "behavior": "continue",
+   "found": false,
+   "t_detect": null,
+   "p_out_final": 0.2967444801347672,
+   "truth_left": false,
+   "declared_left": false,
+   "distance": 91.48900559421946,
+   "planner_lam": 0.004,
+   "fps": 6,
+   "n_frames": 80,
+   "frames": [
+    {
+     "t": 1,
+     "p_out": 0.0002,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 2,
+     "p_out": 0.0003,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 3,
+     "p_out": 0.0004,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 4,
+     "p_out": 0.0005,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 5,
+     "p_out": 0.0006,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 6,
+     "p_out": 0.0008,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 7,
+     "p_out": 0.001,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 8,
+     "p_out": 0.0012,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 9,
+     "p_out": 0.0015,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 10,
+     "p_out": 0.0018,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 11,
+     "p_out": 0.0022,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 12,
+     "p_out": 0.0027,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 13,
+     "p_out": 0.0033,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 14,
+     "p_out": 0.004,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 15,
+     "p_out": 0.0048,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 16,
+     "p_out": 0.0058,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 17,
+     "p_out": 0.0069,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 18,
+     "p_out": 0.0079,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 19,
+     "p_out": 0.0092,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 20,
+     "p_out": 0.0107,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 21,
+     "p_out": 0.0124,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 22,
+     "p_out": 0.0142,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 23,
+     "p_out": 0.016,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 24,
+     "p_out": 0.0179,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 25,
+     "p_out": 0.0199,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 26,
+     "p_out": 0.0222,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 27,
+     "p_out": 0.0248,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 28,
+     "p_out": 0.0273,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 29,
+     "p_out": 0.0301,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 30,
+     "p_out": 0.0335,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 31,
+     "p_out": 0.0365,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 32,
+     "p_out": 0.0394,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 33,
+     "p_out": 0.0428,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 34,
+     "p_out": 0.0463,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 35,
+     "p_out": 0.0501,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 36,
+     "p_out": 0.0539,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 37,
+     "p_out": 0.0576,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 38,
+     "p_out": 0.0614,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 39,
+     "p_out": 0.0654,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 40,
+     "p_out": 0.0692,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 41,
+     "p_out": 0.0732,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 42,
+     "p_out": 0.0782,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 43,
+     "p_out": 0.0824,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 44,
+     "p_out": 0.0869,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 45,
+     "p_out": 0.0916,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 46,
+     "p_out": 0.0963,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 47,
+     "p_out": 0.1011,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 48,
+     "p_out": 0.1061,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 49,
+     "p_out": 0.1112,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 50,
+     "p_out": 0.1155,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 51,
+     "p_out": 0.1203,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 52,
+     "p_out": 0.1255,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 53,
+     "p_out": 0.1309,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 54,
+     "p_out": 0.1365,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 55,
+     "p_out": 0.1431,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 56,
+     "p_out": 0.1494,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 57,
+     "p_out": 0.155,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 58,
+     "p_out": 0.1608,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 59,
+     "p_out": 0.1675,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 60,
+     "p_out": 0.1738,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 61,
+     "p_out": 0.1788,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 62,
+     "p_out": 0.1839,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 63,
+     "p_out": 0.1897,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 64,
+     "p_out": 0.1955,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 65,
+     "p_out": 0.2012,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 66,
+     "p_out": 0.2068,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 67,
+     "p_out": 0.214,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 68,
+     "p_out": 0.2195,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 69,
+     "p_out": 0.2247,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 70,
+     "p_out": 0.2301,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 71,
+     "p_out": 0.2358,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 72,
+     "p_out": 0.242,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 73,
+     "p_out": 0.2485,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 74,
+     "p_out": 0.2552,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 75,
+     "p_out": 0.262,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 76,
+     "p_out": 0.2697,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 77,
+     "p_out": 0.2769,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 78,
+     "p_out": 0.2836,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 79,
+     "p_out": 0.2906,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    },
+    {
+     "t": 80,
+     "p_out": 0.2967,
+     "look": true,
+     "detected": false,
+     "subject_inside": true
+    }
+   ]
+  }
+ ]
+}

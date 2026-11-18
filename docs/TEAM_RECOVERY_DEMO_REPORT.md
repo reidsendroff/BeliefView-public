@@ -1,0 +1,68 @@
+# Clearance repair and local two-drone demo
+
+Status: implementation and independent review complete. Engineering gates, build, 175 unit tests, 86 author team-browser checks, 57 single-mode browser checks, 72 independent browser checks and 7 independent fault checks passed. Codex approved the local demo in `TEAM_RECOVERY_DEMO_REVIEW.md` (an internal record, not published here; see [PUBLIC_SNAPSHOT.md](PUBLIC_SNAPSHOT.md)). Local only; no merge, deployment or publication.
+
+## What changed
+
+The team controller now distinguishes physical obstacle interiors from desired clearance contact. Exact tangent contact is valid within a 0.000001 m numerical tolerance. Existing margin deficits can only improve or stay level; previously clear obstacle margins cannot be newly violated. Every team motion segment is checked, including ordinary inherited-controller motion. Frozen single-drone physics, terrain, subject behavior, ONNX weights and historical results remain unchanged.
+
+A latched public-map detour replaces a blocked command. It uses only known geometry, actual own motion and the commanded displacement. Targets are validated along their full segments; a bounded two-hop search handles narrow geometry. Joint avoidance receives the validated detour directly and preserves hard 4 m swept pair separation. A healthy partner can continue moving while the other brakes. Contact detours have a 12 s absolute attempt cap and a 3 s actual commanded-stationary limit. Goal progress is diagnostic, so a safe moving yield is not falsely called a local deadlock. Original plus three retries is four attempts maximum in deliberately impossible fixtures. Generated engineering episodes must have no blocked events.
+
+The two-drone route uses one simulated camera per aircraft and a local worker and renders two independent 16:9, 72 degree horizontal FOV sensor cameras. The separate spectator has all four existing camera modes, manual Orbit, A/B focus, cutaway and evaluation truth. Sensor passes always keep cover opaque and exclude spectator overlays. Analytic belief maps show either the real shared posterior or separate A/B posteriors, with source-specific noisy observations and epoch age. Team mode uses no ONNX; the exact static map is supplied. Shared-only is the default, and complementary allocation remains explicitly experimental.
+
+## Preserved baseline and review
+
+Durable pre-pass baseline: a private local baseline (not published; see [PUBLIC_SNAPSHOT.md](PUBLIC_SNAPSHOT.md)); manifest SHA256 `cadc057436a393cc28e98b0edde3c32515013ab8119cebe87736ac5d10907c53`. It includes the existing uncommitted product, prior candidate artifacts, rendered copy/control inventory, and dependency-link targets. Current branch is `codex/astra-team-recovery-demo`.
+
+Astra authored implementation. Claude critiqued the concrete recovery, detour and timeout plans before their respective edits. Codex independently reviewed actual source, geometry, frozen hashes, full traces, tests and rendered evidence. The detailed independent review is `docs/TEAM_RECOVERY_DEMO_REVIEW.md` (not published here). Implementation and independent review are separate from release; there was no release.
+
+`demo3d/output/team-repair-preserved-sources.json` verifies the pre-pass hashes of main.ts, frozen simulator/drone/geometry/rich-world/rich-subject source, model weights and historical ML results. The single-drone main.ts hash remains `54d8b3f5929867f828590865b0ce66df6177c33ac325b1ac3697843ea98cb933`. ONNX remains `6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2`.
+
+## Engineering evidence, not a new performance audit
+
+The first repair v3 failed 48/256 episodes. Its raw source/traces/gate are retained. V4 reduced all independently measured stationary holds to 0.05 s, but two episodes were marked blocked solely by the fixed 6 s detour timer during a safe moving joint yield. Those failures and the intermediate progress-clock attempts remain preserved. V5 uses the simpler actual-stationary/absolute-cap semantics and passes the complete 256-episode trace gate.
+
+V5 development: 32 world/subject seed pairs, two terrain families, four arms, 75 s each. Seeds 220000..220031 and 225000..225031 are development. Frozen manifest `demo3d/output/team-recovery-v5-engineering/manifest.json`, SHA256 `a2e42c1b57c7113aec612f4b40d2f4bdccffa5249231db44436e4550a6204d0c`. Raw report `demo3d/ml/results/team_recovery_v5_engineering.json`; independent-style complete-trace gate `team_recovery_v5_engineering_gate.json`.
+
+V5.1 strengthens the public interface by replacing Vec3 object spreads with explicit x/y/z projection and adds a nested forbidden-getter test. This is the only numerical-source delta from v5. Generated Vec3 values contain exactly x/y/z, independently verified across all v5 traces, so it is value-equivalent for those inputs. V5 traces remain labeled v5, not silently relabeled as v5.1. Fresh 64 engineering stress episodes use v5.1, seeds 240000..240007 and 245000..245007, two families/four arms. Manifest `demo3d/output/team-recovery-v51-stress/manifest.json`, SHA256 `dc0b9adcdd0241832f999740bd22a5612cf7b0727bdab296ff273195778d1aeb`.
+
+| Engineering set | Episodes passed | Longest forced or commanded-stationary interval | Minimum swept pair separation | Blocked events |
+| --- | ---: | ---: | ---: | ---: |
+| V5 development | 256/256 | 0.05 s | 4.000007 m | 0 |
+| V5.1 fresh stress | 64/64 | 0.05 s | 4.195846 m | 0 |
+
+Only two development episodes used a contact attempt longer than 6 s; both completed. The maximum interval without new best-target-distance progress was 3.75 s in development and 2.40 s in stress, illustrating why safe moving yields must not be called stationary stalls. No stress attempt exceeded 6 s. Finding is not guaranteed: 47/256 development runs and 10/64 stress runs never acquired the subject within 75 s.
+
+Actual motion remains synthetic: maximum observed 3D speed was 9.27 m/s and acceleration 185.32 m/s² in development; stress maxima were 9.04 m/s and 175.91 m/s². The maximum inherited projection correction proposed before the guard was 0.435 m. These are measured limitations, not claimed physical flight bounds.
+
+The gate checks zero physical-invalid points/segments, zero new desired-margin deficits, hard 4 m swept pair separation, finite physical state, normalized model mass, no subject penetration or water entry, no blocked events, and no forced or independently reconstructed commanded-stationary run above 3 s. It counts 75 s over 1500 intervals. Finding failures are retained rather than confused with runtime failure. All final reserved team seeds remain locked and unused.
+
+Codex independently compared the v4 and v5 physical/sensor/belief transcripts: 254 episodes are exactly unchanged. Only the two original 220017 arms change, beginning at 67.5 s, when the old timeout would have interrupted progress. The independent raw comparison is preserved in `demo3d/output/team-repair-review-inputs/bv-team-v4-v5-comparison.json`.
+
+These engineering runs do not prove search superiority or calibration. Earlier candidate 1/2 gains are not transferred to the repaired controller. Default development mission 17 is an illustrative presentation example; all 32 development missions remain selectable, including never-found cases. No allocator-superiority claim is made over shared-only.
+
+## Copy and feature inventory
+
+No existing single-drone control or disclosure was deleted. index.html changes only the script entry to a lazy mission router. A new "Open two-drone mission" link is placed beside the existing active-policy strip, avoiding a mobile title/toolbar overlap. Selecting the new mission starts at 0; returning to single mode retains single-guidance URL parameters and compatible replay settings. Team mode supports 4x; legacy single mode keeps its existing 0.5x/1x/2x validation.
+
+Only the explicitly selected team route replaces the single-route DOM. The full synthetic/real-flight/2D disclosure is cloned verbatim. Team mode adds distinct sensor panes, A/B spectator focus, four arm selections, terrain and development-mission selectors, loading/cancel/error/retry, source-tagged evidence and model-mass maps. The team "Mission & policy" section is collapsed initially on narrow screens, with active policy and mission still visible; all controls remain keyboard/touch accessible. The team page uses a separate playback rail outside the independently scrolling content viewport, and each camera pass clips to that viewport without changing its projection, so controls do not cover sensor content. Existing single prediction overlays and guidance fallback remain on the single route.
+
+New team copy explicitly states analytic belief, exact known map, no ONNX, uncalibrated model mass, development examples, experimental complementary allocation and synthetic dynamics limits. A failed local attempt is not described as a proof that no route exists. Camera cutaway/truth are identified as spectator-only. No pricing, consent, auth, messaging or production data flows exist in this change.
+
+## Final local build and browser checks
+
+Author verification: TypeScript/Vite build passed; full suite 175/175 across 16 files passed. After the final UI rail/copy fixes, all 21 affected spectator/presentation/replay tests passed again. Codex independently ran the full 175-test suite and build before those small UI fixes and reviews the final source and browser behavior separately.
+
+The actual production-browser team report is `demo3d/ml/results/team_browser.json`: 86/86 checks pass, zero runtime/unexpected console errors, and no external or ONNX/model requests. It covers eight arm/terrain combinations, fresh-worker determinism, numerical digest immutability, exact A/B sensor-pixel invariance under spectator cutaway/truth at 12/35/65 s, independent A/B views, manual Orbit, A/B focus, policy/time/speed/camera persistence, mission/terrain reset, URL cutaway, copy-link success/fallback, cancel/retry, worker-load failure/retry, and fingerprint mismatch rejection. Five viewport sizes include 320x568 and 844x390. The final rail is outside the sensor scrollport at every size; sensor aspect and combined area assertions pass. Screenshots are in `demo3d/output/playwright/team-demo/`.
+
+The actual legacy report is `demo3d/ml/results/browser_smoke_team_repair.json`: 57/57 pass, including unchanged active-policy wording, real learned-model inference, provenance, deterministic replay, missing-manifest fallback and corrupt-model rejection. The historical `browser_smoke.json` was not overwritten. The initial new-link placement caused two exact-text assertions to fail; its failed report is retained as `browser_smoke_team_repair_attempt1.json`, and the link was moved to a sibling instead of weakening tests.
+
+Earlier UI preflight failures are retained under `demo3d/output/playwright/team-demo-preflight/`: a first-RAF negative elapsed-time autoplay bug was fixed by clamping elapsed time to zero; premature browser-harness reads were fixed by waiting for the actual UI frame/DOM. The pre-rail 81-check predecessor and screenshots were not used as evidence for the final no-overlap claim. Final source/build hashes are in `demo3d/output/team-demo-final-build.json`. These UI hashes are separate from the frozen numerical manifests; the renderer/router additions do not relabel earlier simulation evidence.
+
+Codex independently ran the final production build: `demo3d/ml/results/team_independent_browser.json` contains 72/72 passing checks, no runtime errors, no external requests and no ONNX requests. All four spectator modes completed the full 75 s mission at 4x and stopped at the endpoint. Each retained the same canonical physical/sensor/belief digest `d3eaa44aa4e71f52d6ceec0cf79f4623803d6725f297ae959c2bdbcd33ca18e8`, including manual Orbit. Independent screenshots are in `demo3d/output/playwright/team-independent/`.
+
+For those four t=0 full-motion runs, worker compute was 1.77-1.80 s, first frame 2.54-2.60 s and recent frame-interval p95 13.5-14.7 ms. These are measured local browser timings, not universal hardware guarantees. The separate eight arm/terrain loads directly at t=12 exercised additional lazy spectator preparation: first frame was 3.67-7.72 s, with worker compute 1.12-1.83 s. Reporting the shorter t=0 startup alone would omit that cost. Independent fault injection also passed 7/7 checks in `demo3d/ml/results/team_independent_browser_faults.json`, including cancellation/retry/autoplay, map-fingerprint mismatch rejection, and recomputation of the actual numeric transcript to confirm rendering controls do not mutate it. Codex independently verified all 72 final source/build hashes (manifest SHA256 `38e42afdebcc15228f1898084736af22d3d0959c1342caaefff006b0d49b4805`) and approved the local demo. The final post-rail independent build and nine focused tests also passed; the earlier independent full suite had 175 passing tests.
+
+## Material limits
+
+This is a local synthetic simulation, not a real-flight controller or airframe safety guarantee. Desired margins surround point-position geometry. Inherited collision projection and emergency holds still produce acceleration discontinuities; actual maxima are reported. Canopies/cover use explicit simplified opaque geometry. Observations are generated by geometric FOV/range/line-of-sight checks plus simulated noise, not by a vision detector on rendered pixels. The analytic belief is an approximation on 6 m cells and is not a calibrated probability of finding the subject. Exact prior map knowledge is supplied, not reconstructed by SLAM. Some missions never find the subject. A shared belief does not establish an advantage for the complementary allocator.

@@ -1,0 +1,5 @@
+lam,n,n_found,found_by_deadline,found_A,found_B,mean_distance,rmst,within_tolerance,selected
+0.0005,200,124,0.6200,0.6200,0.6200,48.5037,40.4500,True,False
+0.0010,200,124,0.6200,0.6200,0.6200,46.6124,40.6250,True,False
+0.0020,200,124,0.6200,0.6200,0.6200,41.5442,40.5250,True,False
+0.0040,200,121,0.6050,0.6000,0.6100,34.2564,41.5550,True,True

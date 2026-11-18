@@ -1,0 +1,544 @@
+{
+  "version": "v2",
+  "frozen_at": "2026-11-14T17:57:20-05:00",
+  "chosen": {
+    "lam": 0.004,
+    "orbit_margin": 2.0,
+    "scan_yaw_deg": 45.0,
+    "tau_left": 0.9
+  },
+  "config_hash": "a69bfac2342ac108",
+  "protocol_hash": "005759e5dd0fd210",
+  "core_source_checksum": "964103366f5b5762",
+  "core_source_modules": [
+    "config.py",
+    "geometry.py",
+    "sensor.py",
+    "belief.py",
+    "dynamics.py",
+    "planner.py",
+    "policies.py",
+    "world.py",
+    "runner.py",
+    "experiment.py",
+    "v2.py"
+  ],
+  "git_revision_at_freeze": "38ebecd + uncommitted changes in beliefview/",
+  "protocol": {
+    "version": "v2",
+    "split_ids": {
+      "v2_val": 3,
+      "v2_final": 4
+    },
+    "seed_policy": "numpy SeedSequence([base_seed, scenario_idx, split_id, episode_idx]); v1 used split ids dev=0, val=1, test=2; v2 uses v2_val=3 and v2_final=4 only",
+    "tuning": {
+      "policy": "belief",
+      "scenarios": [
+        "A_matched",
+        "B_motion_mismatch"
+      ],
+      "split": "v2_val",
+      "n_per_scenario": 100,
+      "lam_grid": [
+        0.0005,
+        0.001,
+        0.002,
+        0.004
+      ],
+      "tolerance": 0.03,
+      "rule": "select the largest lam whose combined (A+B) reacquired-by-deadline fraction is within 0.03 absolute of the best fraction on the grid; lam = 0 is not a candidate"
+    },
+    "final": {
+      "split": "v2_final",
+      "n_per_scenario": 200,
+      "scenarios": [
+        "A_matched",
+        "B_motion_mismatch",
+        "C_sensor_mismatch",
+        "D_exit_mismatch"
+      ],
+      "policies": [
+        "stay",
+        "last_seen",
+        "orbit",
+        "belief",
+        "belief_noneg"
+      ],
+      "reference_arms": [
+        "belief_lam0"
+      ],
+      "reference_arm_note": "belief_lam0 = BeliefView with lam = 0 on the same final episodes; a labelled paired reference arm only, never a tuning candidate or a replacement headline",
+      "exit_sweep": {
+        "scenario": "D_exit_mismatch",
+        "policy": "belief"
+      },
+      "runs_allowed": 1
+    },
+    "fixed_from_v1_not_retuned": {
+      "orbit_margin": 2.0,
+      "scan_yaw_deg": 45.0,
+      "tau_left": 0.9
+    },
+    "ablation": "belief_noneg inherits the selected lam and every other planner setting; nothing is tuned for it",
+    "after_final": "any substantive correction after viewing v2 final results requires a separately labelled v3 and new seeds"
+  },
+  "base_seed": 20261114,
+  "note": "config.experiment.n_dev/n_val/n_test are v1 fields and are unused by v2; the v2 episode counts are protocol.tuning.n_per_scenario and protocol.final.n_per_scenario. config_hash covers the config block (same function as v1); protocol_hash covers config + protocol.",
+  "config": {
+    "map": {
+      "size": 40.0,
+      "obstacles": [
+        [
+          9.0,
+          11.0,
+          15.0,
+          17.0
+        ],
+        [
+          24.0,
+          5.0,
+          28.0,
+          14.0
+        ],
+        [
+          19.0,
+          27.0,
+          31.0,
+          30.0
+        ],
+        [
+          5.0,
+          27.0,
+          10.0,
+          33.0
+        ]
+      ],
+      "foliage": [
+        [
+          29.0,
+          17.0,
+          36.0,
+          25.0
+        ]
+      ]
+    },
+    "observer": {
+      "speed": 1.5,
+      "max_turn_deg": 50.0,
+      "radius": 0.8,
+      "arrive_tol": 0.6,
+      "scan_yaw_deg": 45.0
+    },
+    "experiment": {
+      "deadline": 80,
+      "n_dev": 20,
+      "n_val": 40,
+      "n_test": 100,
+      "base_seed": 20261114,
+      "tau_left": 0.9,
+      "credible_mass": 0.9,
+      "bootstrap": 2000,
+      "exit_sweep": [
+        0.0,
+        0.01,
+        0.03,
+        0.08,
+        0.2
+      ]
+    },
+    "planner": {
+      "horizon": 12,
+      "lam": 0.004,
+      "commit": 3,
+      "distances": [
+        4.0,
+        8.0,
+        12.0
+      ],
+      "n_dirs": 8,
+      "n_stay_yaws": 8
+    },
+    "baselines": {
+      "orbit_margin": 2.0,
+      "scan_yaw_deg": 45.0
+    },
+    "scenarios": [
+      {
+        "name": "A_matched",
+        "description": "Assumptions approximately right (same speed, stop/turn rates, sensor).",
+        "truth_motion": {
+          "speed": 0.3,
+          "heading_noise": 0.2,
+          "behavior_probs": [
+            [
+              "continue",
+              0.3
+            ],
+            [
+              "turn",
+              0.25
+            ],
+            [
+              "stop",
+              0.2
+            ],
+            [
+              "conceal",
+              0.15
+            ],
+            [
+              "exit",
+              0.1
+            ]
+          ],
+          "stop_dur": [
+            10,
+            25
+          ],
+          "lost_age": [
+            15,
+            40
+          ],
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0
+        },
+        "true_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        },
+        "assumed_motion": {
+          "speed": 0.3,
+          "p_stop": 0.03,
+          "p_resume": 0.05,
+          "p_turn": 0.12,
+          "p_reverse": 0.005,
+          "diffusion": 0.03,
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0,
+          "init_stop_prior": 0.15,
+          "init_sigma": 0.8
+        },
+        "assumed_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        }
+      },
+      {
+        "name": "B_motion_mismatch",
+        "description": "Structural motion mismatch: long stops (50-120 steps) and doubling back; filter still assumes short stops, rare reversals.",
+        "truth_motion": {
+          "speed": 0.3,
+          "heading_noise": 0.2,
+          "behavior_probs": [
+            [
+              "continue",
+              0.1
+            ],
+            [
+              "turn",
+              0.1
+            ],
+            [
+              "stop",
+              0.3
+            ],
+            [
+              "doubleback",
+              0.25
+            ],
+            [
+              "conceal",
+              0.15
+            ],
+            [
+              "exit",
+              0.1
+            ]
+          ],
+          "stop_dur": [
+            50,
+            120
+          ],
+          "lost_age": [
+            15,
+            40
+          ],
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0
+        },
+        "true_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        },
+        "assumed_motion": {
+          "speed": 0.3,
+          "p_stop": 0.03,
+          "p_resume": 0.05,
+          "p_turn": 0.12,
+          "p_reverse": 0.005,
+          "diffusion": 0.03,
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0,
+          "init_stop_prior": 0.15,
+          "init_sigma": 0.8
+        },
+        "assumed_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        }
+      },
+      {
+        "name": "C_sensor_mismatch",
+        "description": "Sensor mismatch: true foliage detection 0.10x (assumed 0.4x), true p0 0.75 (assumed 0.9), true range scale 7 (assumed 6, i.e. true range is better), true meas. noise 1.0 (assumed 0.6).",
+        "truth_motion": {
+          "speed": 0.3,
+          "heading_noise": 0.2,
+          "behavior_probs": [
+            [
+              "continue",
+              0.3
+            ],
+            [
+              "turn",
+              0.25
+            ],
+            [
+              "stop",
+              0.2
+            ],
+            [
+              "conceal",
+              0.15
+            ],
+            [
+              "exit",
+              0.1
+            ]
+          ],
+          "stop_dur": [
+            10,
+            25
+          ],
+          "lost_age": [
+            15,
+            40
+          ],
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0
+        },
+        "true_sensor": {
+          "p0": 0.75,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 7.0,
+          "foliage_factor": 0.1,
+          "meas_sigma": 1.0,
+          "look_period": 3
+        },
+        "assumed_motion": {
+          "speed": 0.3,
+          "p_stop": 0.03,
+          "p_resume": 0.05,
+          "p_turn": 0.12,
+          "p_reverse": 0.005,
+          "diffusion": 0.03,
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0,
+          "init_stop_prior": 0.15,
+          "init_sigma": 0.8
+        },
+        "assumed_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        }
+      },
+      {
+        "name": "D_exit_mismatch",
+        "description": "Exit-heavy truth (35% exit behaviour, true boundary hazard 0.08/step) vs assumed 0.03; used for the exit-rate sweep.",
+        "truth_motion": {
+          "speed": 0.3,
+          "heading_noise": 0.2,
+          "behavior_probs": [
+            [
+              "continue",
+              0.2
+            ],
+            [
+              "turn",
+              0.15
+            ],
+            [
+              "stop",
+              0.1
+            ],
+            [
+              "conceal",
+              0.2
+            ],
+            [
+              "exit",
+              0.35
+            ]
+          ],
+          "stop_dur": [
+            10,
+            25
+          ],
+          "lost_age": [
+            15,
+            40
+          ],
+          "edge_exit_rate": 0.08,
+          "edge_band": 2.0
+        },
+        "true_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        },
+        "assumed_motion": {
+          "speed": 0.3,
+          "p_stop": 0.03,
+          "p_resume": 0.05,
+          "p_turn": 0.12,
+          "p_reverse": 0.005,
+          "diffusion": 0.03,
+          "edge_exit_rate": 0.03,
+          "edge_band": 2.0,
+          "init_stop_prior": 0.15,
+          "init_sigma": 0.8
+        },
+        "assumed_sensor": {
+          "p0": 0.9,
+          "fov_half_deg": 30.0,
+          "max_range": 12.0,
+          "r0": 6.0,
+          "foliage_factor": 0.4,
+          "meas_sigma": 0.6,
+          "look_period": 3
+        }
+      }
+    ]
+  },
+  "tuning_log": {
+    "candidates": {
+      "0.0005": {
+        "n": 200,
+        "n_found": 124,
+        "found_by_deadline": 0.62,
+        "mean_distance": 48.50374376887641,
+        "rmst": 40.45,
+        "A_matched": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 48.85712208252491
+        },
+        "B_motion_mismatch": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 48.15036545522791
+        }
+      },
+      "0.001": {
+        "n": 200,
+        "n_found": 124,
+        "found_by_deadline": 0.62,
+        "mean_distance": 46.6124199104861,
+        "rmst": 40.625,
+        "A_matched": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 45.87016162571861
+        },
+        "B_motion_mismatch": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 47.3546781952536
+        }
+      },
+      "0.002": {
+        "n": 200,
+        "n_found": 124,
+        "found_by_deadline": 0.62,
+        "mean_distance": 41.544180119111836,
+        "rmst": 40.525,
+        "A_matched": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 40.19271031582778
+        },
+        "B_motion_mismatch": {
+          "n": 100,
+          "n_found": 62,
+          "found_by_deadline": 0.62,
+          "mean_distance": 42.8956499223959
+        }
+      },
+      "0.004": {
+        "n": 200,
+        "n_found": 121,
+        "found_by_deadline": 0.605,
+        "mean_distance": 34.25637512112552,
+        "rmst": 41.555,
+        "A_matched": {
+          "n": 100,
+          "n_found": 60,
+          "found_by_deadline": 0.6,
+          "mean_distance": 33.885715425814716
+        },
+        "B_motion_mismatch": {
+          "n": 100,
+          "n_found": 61,
+          "found_by_deadline": 0.61,
+          "mean_distance": 34.62703481643633
+        }
+      }
+    },
+    "best_found_by_deadline": 0.62,
+    "tolerance": 0.03,
+    "eligible": [
+      0.0005,
+      0.001,
+      0.002,
+      0.004
+    ],
+    "selected_lam": 0.004,
+    "split": "v2_val",
+    "n_per_scenario": 100,
+    "note": "Validation split only. Every candidate ran the same validation episodes (paired). Only the BeliefView planner was run; the no-miss-update ablation inherits the selected lam. Orbit margin, scan yaw and tau_left are the v1 values and were not re-tuned."
+  }
+}

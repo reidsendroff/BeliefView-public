@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>BeliefView 3D — illustrative drone search simulation</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="stage"></div>
+  <div id="spectator-pane" role="img" aria-label="Evaluation-only spectator view"><div class="pane-heading">SPECTATOR VIEW <span id="cutaway-label">CUTAWAY: ON</span></div></div>
+
+  <div id="disclosure" role="note">
+    <strong>SYNTHETIC ILLUSTRATIVE SIMULATION</strong>
+    <span>Procedural world, simulated drone and subject. Not a real drone or flight controller, not validated 3D performance, and unrelated to BeliefView v2 metrics (the frozen v2 experiment is 2D).</span>
+  </div>
+
+  <header id="title">
+    <h1>BeliefView&nbsp;3D <small>When the sighting ends, the search begins.</small></h1>
+  </header>
+
+  <div id="cam-label" role="note"><b>Spectator pane:</b> evaluation-only spectator camera (not available to the drone), optional cutaway &nbsp;·&nbsp; <b>Drone pane:</b> simulated drone camera; cover stays opaque</div>
+
+  <section id="status" class="panel">
+    <div id="chip" class="chip">TRACKING</div>
+    <div id="ml-active" role="status">Active guidance: Kalman</div>
+    <div id="status-content">
+    <div id="caption">—</div>
+    <div id="search-story"><strong id="story-title">Observing</strong><p id="story-intent"></p><div id="story-belief"></div></div>
+    <details id="flight-details"><summary>Flight &amp; sensor diagnostics</summary>
+    <dl>
+      <dt>Drone mode</dt><dd id="v-mode">—</dd>
+      <dt>Altitude (AGL)</dt><dd id="v-agl">—</dd>
+      <dt>Ground speed</dt><dd id="v-speed">—</dd>
+      <dt>Since last fix</dt><dd id="v-age">—</dd>
+      <dt>Prediction radius (95%)</dt><dd id="v-rad">—</dd>
+    </dl>
+    <h3>Sensor model (simulation)</h3>
+    <dl>
+      <dt>Line of sight</dt><dd id="v-los">—</dd>
+      <dt>In camera FOV</dt><dd id="v-fov">—</dd>
+      <dt>Range</dt><dd id="v-range">—</dd>
+      <dt id="subj-eval-dt" hidden title="Ground truth from the hand-written subject policy. The tracker and drone never receive it.">Subject truth (eval only)</dt><dd id="v-sact" hidden>—</dd>
+    </dl>
+    </details>
+    </div>
+  </section>
+
+  <nav id="camera-toolbar" aria-label="Spectator camera">
+    <div class="seg" id="cams">
+      <button data-cam="cinematic" class="on" title="Key 1">Cinematic</button>
+      <button data-cam="chase" title="Key 2">Chase</button>
+      <button data-cam="ground" title="Key 3">Ground</button>
+      <button data-cam="orbit" title="Key 4">Orbit</button>
+    </div>
+</nav>
+  <details id="inspector" class="panel"><summary>Explore scenario &amp; controls</summary><div class="inspector-scroll">
+    <section id="scenario-panel"><h3>Deterministic replay</h3><label for="scenario">Scenario</label><select id="scenario"></select><p id="scenario-description"></p><label for="terrain">Terrain</label><select id="terrain"><option value="original">Original forest</option><option value="rich">Rich cover + pond</option></select><label for="policy">Learned search policy</label><select id="policy"><option value="baseline">Frozen learned baseline</option><option value="active">Active search (experimental)</option></select><p id="map-prior">All policies receive the exact static synthetic map in advance. Cover and terrain are simplified opaque geometry, not discovered or reconstructed by the drone.</p><p id="domain-note" hidden>Rich terrain adds thick and clustered trees, low evergreen foliage, hills, real cover, lower crouched sensing and shoreline navigation. The frozen CNN was not trained on this variant; historical coverage is not a calibration guarantee here.</p><button id="b-link">Copy replay link</button><span id="link-status" role="status"></span></section>
+  <details id="controls"><summary>Display overlays</summary>
+    <h3>Overlays</h3>
+    <label><input type="checkbox" id="t-pred" checked /> <span id="t-pred-label">Prediction &amp; uncertainty</span> <kbd>P</kbd></label>
+    <label><input type="checkbox" id="t-see" checked /> <span title="Render-only cutaway of foreground trees and cover in the spectator pane. Never changes physical sensing or the opaque drone camera.">Spectator tree &amp; cover cutaway</span> <kbd>C</kbd></label>
+    <label><input type="checkbox" id="t-frus" checked /> Camera frustum <kbd>F</kbd></label>
+    <label><input type="checkbox" id="t-map" checked /> Belief map <kbd>M</kbd></label>
+    <label><input type="checkbox" id="t-trail" disabled /> <span title="Render-only footprint marks of the subject's last ~9 s of TRUE path. Evaluation only: requires the ground-truth marker (T). Not seen by the tracker or drone.">Subject true-path trail <em>(evaluation only, needs truth)</em></span> <kbd>L</kbd></label>
+    <label class="eval"><input type="checkbox" id="t-truth" /> Ground truth marker <em>(evaluation only)</em> <kbd>T</kbd></label>
+  </details>
+
+  <section id="mlpanel" aria-label="Search guidance and learned model">
+    <h3>Search guidance</h3>
+    <div class="seg" id="guidance">
+      <button data-g="kalman" class="on" title="Default. Constant-velocity Kalman belief drives the search viewpoint.">Kalman (default)</button>
+      <button data-g="ml" title="Viewpoints are scored against a learned probability grid (ONNX model run in this browser).">Learned (ONNX)</button>
+    </div>
+    <p id="comparison-note">Both policies start from the same coarse area. The subject reacts to each drone path, so changing guidance can change the subject trajectory. This is not a fixed-path counterfactual.</p>
+    <details id="model-details"><summary>Model evidence &amp; probability overlay</summary>
+    <label><input type="checkbox" id="t-ml" disabled /> Learned probability &amp; validation-calibrated region <kbd>G</kbd></label>
+    <dl id="ml-readout" hidden>
+      <dt>Peaks (mass)</dt><dd id="ml-peaks">—</dd>
+      <dt>Validation-calibrated region (target 95%)</dt><dd id="ml-region">—</dd>
+      <dt>Measured held-out coverage (vs 95% target)</dt><dd id="ml-coverage">—</dd>
+      <dt>Entropy</dt><dd id="ml-entropy">—</dd>
+      <dt>Inference (this browser)</dt><dd id="ml-latency">—</dd>
+    </dl>
+    <div id="ml-status" role="status">Model: not loaded (Kalman guidance selected)</div>
+    <p id="runtime-stats"></p>
+    <p id="active-scoring-note" hidden>Active search v2 additionally checks the full sensor field of view, routes between clear segments, discounts recently sensed empty regions and mixes a bounded exploration prior into planning utility. The displayed CNN probability grid is unchanged. Utility is not a calibrated probability; wholly submerged grid cells are masked conservatively while shoreline cells remain eligible.</p><p id="scoring-note">Learned search scores candidate low viewpoints by map-visible probability mass, minus travel cost, with a preference for the current viewpoint. This is a greedy heuristic, not an exact probability of reacquisition. A plan can fall back to the Kalman viewpoint.</p>
+    <p id="ml-setup-note" hidden>Learned run: the drone starts from a coarse 16 m designated area, the model gets no start position and is only used after the first noisy fix. The Kalman corridor drawn by the Prediction toggle is the tracker's own estimate, not the learned model.</p>
+    </details>
+    <p id="ml-disclosure"><strong>Synthetic:</strong> the learned model is trained only on simulated episodes of a hand-written evasive subject. It is an illustrative demo, not validated on real people, drones or forests, and its probabilities are not real-world likelihoods.</p>
+  </section>
+  </div></details>
+  <div id="ml-loading" hidden><div><b>Learned guidance</b><span id="ml-loading-msg">loading model…</span></div></div>
+
+  <canvas id="minimap" width="360" height="360" aria-label="Belief map (tracker belief only unless the evaluation marker is on)"></canvas>
+  <div id="minimap-cap">Belief map · tracker view</div>
+
+  <div id="altgauge" aria-label="Drone altitude above ground">
+    <div class="band" id="g-band"></div>
+    <div class="tick" style="bottom:0%"><span>0</span></div>
+    <div class="tick" style="bottom:33.33%"><span>10</span></div>
+    <div class="tick" style="bottom:66.66%"><span>20</span></div>
+    <div class="tick" style="bottom:100%"><span>30 m</span></div>
+    <div id="g-drone"></div>
+    <div class="glabel">canopy layer</div>
+  </div>
+
+  <div id="toast"></div>
+
+  <div id="inset">
+    <div class="ins-top"><span class="rec">●</span> DRONE CAM <span id="ins-status"></span></div>
+    <div id="lock"></div>
+    <div id="pred-ghost"></div>
+    <div class="ins-cross"></div>
+    <div class="ins-bottom" id="ins-msg"></div>
+  </div>
+
+  <footer id="timeline" class="panel">
+    <button id="b-play" aria-label="Play or pause" title="Space">⏸</button>
+    <button id="b-restart" aria-label="Restart replay" title="R">↺</button>
+    <div id="scrub-wrap">
+      <div id="chips"></div>
+      <input id="scrub" aria-label="Replay time" type="range" min="0" max="10000" value="0" />
+      <div id="markers"></div>
+    </div>
+    <span id="time">0.0 / 0.0 s</span>
+    <div class="seg" id="speeds"><button data-s="0.5">0.5×</button><button data-s="1" class="on">1×</button><button data-s="2">2×</button></div>
+  </footer>
+
+  <script type="module" src="/src/entry.ts"></script>
+</body>
+</html>

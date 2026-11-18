@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "modelId": "beliefview3d-search-v1",
+  "modelVersion": "2.0.0",
+  "synthetic": true,
+  "description": "Probability grid over where the simulated evasive subject is, after fixes stop. Trained only on synthetic episodes from the BeliefView 3D simulator.",
+  "model": {
+    "file": "model.onnx",
+    "format": "onnx",
+    "sha256": "6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2",
+    "bytes": 256739,
+    "opset": 17,
+    "inputs": [
+      {
+        "name": "grid",
+        "shape": [
+          1,
+          8,
+          32,
+          32
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "scalars",
+        "shape": [
+          1,
+          13
+        ],
+        "dtype": "float32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "prob",
+        "shape": [
+          1,
+          1024
+        ],
+        "dtype": "float32"
+      }
+    ]
+  },
+  "features": {
+    "extractorVersion": 2,
+    "grid": {
+      "n": 32,
+      "cellMeters": 4,
+      "centre": "world xz of the last noisy observation (the model is never run before the first fix; no start position is an input)",
+      "layout": "grid[channel][row=z][col=x]; cell centre = centre + ((col+0.5-N/2)*cell, (row+0.5-N/2)*cell); prob has the same row-major cell order"
+    },
+    "channels": [
+      {
+        "index": 0,
+        "name": "canopy_cover",
+        "description": "known map: fraction of the cell under tree canopy (4x4 sub-samples of a 1 m raster)"
+      },
+      {
+        "index": 1,
+        "name": "trunk_proximity",
+        "description": "known map: fraction of the cell within trunk radius + 1.2 m (plausible hiding spots)"
+      },
+      {
+        "index": 2,
+        "name": "sensor_visible_now",
+        "description": "known map + drone pose: cell is inside the camera FOV/range with map line of sight right now"
+      },
+      {
+        "index": 3,
+        "name": "sensor_visible_memory",
+        "description": "same, remembered since the last fix (decays with 25 s time constant); reset on every fix"
+      },
+      {
+        "index": 4,
+        "name": "extrapolated_position",
+        "description": "gaussian blob at last fix + least-squares velocity (last 2 s of fixes) * elapsed"
+      },
+      {
+        "index": 5,
+        "name": "reachable_radius",
+        "description": "1 - distance from last fix / (6.3 m/s * elapsed + 2 m), clipped to [0, 1]"
+      },
+      {
+        "index": 6,
+        "name": "drone_position",
+        "description": "gaussian blob (sigma 1 cell) at the drone's own position"
+      },
+      {
+        "index": 7,
+        "name": "terrain_height",
+        "description": "known map: (terrain height / 8 + 1) / 2"
+      }
+    ],
+    "gridQuantisation": "values are uint8 codes / 255 (extractor emits exactly these)",
+    "scalars": [
+      {
+        "index": 0,
+        "name": "elapsed_since_fix",
+        "scale": 30,
+        "min": 0,
+        "max": 2
+      },
+      {
+        "index": 1,
+        "name": "time",
+        "scale": 75,
+        "min": 0,
+        "max": 2
+      },
+      {
+        "index": 2,
+        "name": "last_fix_sigma",
+        "scale": 2,
+        "min": 0,
+        "max": 2
+      },
+      {
+        "index": 3,
+        "name": "est_vx",
+        "scale": 6,
+        "min": -1.5,
+        "max": 1.5
+      },
+      {
+        "index": 4,
+        "name": "est_vz",
+        "scale": 6,
+        "min": -1.5,
+        "max": 1.5
+      },
+      {
+        "index": 5,
+        "name": "est_speed",
+        "scale": 6,
+        "min": 0,
+        "max": 1.5
+      },
+      {
+        "index": 6,
+        "name": "drone_agl",
+        "scale": 30,
+        "min": -1,
+        "max": 2
+      },
+      {
+        "index": 7,
+        "name": "cam_yaw_sin",
+        "scale": 1,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "index": 8,
+        "name": "cam_yaw_cos",
+        "scale": 1,
+        "min": -1,
+        "max": 1
+      },
+      {
+        "index": 9,
+        "name": "cam_pitch",
+        "scale": 1.5,
+        "min": -1.5,
+        "max": 1.5
+      },
+      {
+        "index": 10,
+        "name": "drone_dx_from_center",
+        "scale": 64,
+        "min": -3,
+        "max": 3
+      },
+      {
+        "index": 11,
+        "name": "drone_dz_from_center",
+        "scale": 64,
+        "min": -3,
+        "max": 3
+      },
+      {
+        "index": 12,
+        "name": "recent_fix_count",
+        "scale": 20,
+        "min": 0,
+        "max": 2
+      }
+    ]
+  },
+  "output": {
+    "name": "prob",
+    "softmaxInGraph": true,
+    "interpretation": "P(subject is in cell) at the prediction time, given observations so far. Sums to 1 over the grid; subject outside the 128 m grid is not modelled."
+  },
+  "calibration": {
+    "region95": {
+      "massLevel": 0.940534,
+      "fitSplit": "val",
+      "fitSamples": 1826,
+      "targetCoverage": 0.95,
+      "statement": "Validation-calibrated region: highest-probability cells until mass >= massLevel, with massLevel fitted on the validation split to TARGET 95% coverage. Coverage on other data is measured, not guaranteed (see measured).",
+      "measured": {
+        "developmentTest": {
+          "split": "test (development: seen while tuning, not a pristine holdout)",
+          "coverage": 0.957909029192125,
+          "samples": 2946,
+          "episodes": 100,
+          "medianAreaM2": 816.0
+        },
+        "finalAudit": {
+          "split": "audit (fresh, disjoint, frozen model, never tuned on)",
+          "coverage": 0.9481012658227848,
+          "samples": 3160,
+          "episodes": 100,
+          "medianAreaM2": 976.0
+        }
+      }
+    }
+  },
+  "training": {
+    "architecture": "BeliefNet: scalar MLP(13->16) broadcast + 8 spatial channels -> 3x3 conv stem(32) -> 6 residual dilated 3x3 conv+BN+ReLU blocks (dilations [1, 2, 4, 8, 1, 2], Dropout2d 0.15 in training only) -> 1x1 conv -> softmax over 1024 cells",
+    "parameters": 62913,
+    "seeds": {
+      "training": 20260101,
+      "train_world0": 1000,
+      "val_world0": 20000,
+      "test_world0": 40000,
+      "train_subject0": 5000,
+      "val_subject0": 25000,
+      "test_subject0": 45000
+    },
+    "splits": {
+      "train": {
+        "worldSeeds": [
+          1000,
+          1899
+        ],
+        "subjectSeeds": [
+          5000,
+          5899
+        ],
+        "episodes": 900,
+        "samples": 28220,
+        "truthOutsideGrid": 274
+      },
+      "val": {
+        "worldSeeds": [
+          20000,
+          20059
+        ],
+        "subjectSeeds": [
+          25000,
+          25059
+        ],
+        "episodes": 60,
+        "samples": 1826,
+        "truthOutsideGrid": 15
+      },
+      "test": {
+        "worldSeeds": [
+          40000,
+          40099
+        ],
+        "subjectSeeds": [
+          45000,
+          45099
+        ],
+        "episodes": 100,
+        "samples": 2946,
+        "truthOutsideGrid": 10
+      }
+    },
+    "loss": "cross-entropy on the true cell; AdamW lr 0.001 (OneCycle), weight decay 0.02, dropout 0.15, batch 128, 16 epochs max, early stop (patience 4) on val NLL; best-val-epoch weights shipped",
+    "framework": "torch 2.15.0, onnx 1.23.2",
+    "device": "cpu",
+    "datasetSha256": "8c19784a24a98ad346d455bbe09030cda9ce31c205ab220607918b79caa925ba",
+    "notebook": "demo3d/ml/BeliefView3D_ml_training.ipynb"
+  },
+  "source": {
+    "repository": "https://github.com/reidsendroff/BeliefView.git",
+    "generatorCommit": "0d827aefc7a0d5391fdae66ea7f800b2c218cd17+dirty",
+    "generatorCommitNote": "parent commit only; the working tree may be dirty/uncommitted, so sourceSha256 (exact file contents) is the authoritative provenance",
+    "simulator": "demo3d/src/sim (TypeScript, Kalman data-collection policy with the coarse start set-up)",
+    "sourceSha256": {
+      "combined": "435706772150a223547eebf828e8330e31c4a84a90caf6e5c357673afa8d782a",
+      "files": {
+        "ml/belief_ml/__init__.py": "d746949bb8f021328bc90e2e8b6580541a08e16c93bac98ab6c32c4495394047",
+        "ml/belief_ml/episodes_cfg.py": "2d3ef514b6a471fc73b1c2cda14ef17e8f5f1b96e49e445ea56536d6d68735e6",
+        "src/ml/episodes.ts": "e76a5ae91d8a62441306ef434452c1a92212ea4e4598354899e65df9916f4e8b",
+        "src/ml/features.ts": "8df5560b8b882eb693aae00712398bd2f77bec64d8238bc70ddfccadd6754bbe",
+        "src/ml/replay.ts": "e58c7eafa871692df2bf86cb3bd8b327e7442209d796d8cc1226f1880e353320",
+        "src/ml/scenarios.ts": "3bb01fcc262ee9921c4193e1ad6a353a615b1598ead96f4a0e8530daeb6a3bf7",
+        "src/sim/drone.ts": "2fa182fbf4f9956e676434d7f73113ba1510616fe92854e163e24068587da7c2",
+        "src/sim/geometry.ts": "72fd9696f3b0990a5322085051fbfb1f3fb80ec0e0cd83075a88fd154f2b0d22",
+        "src/sim/playback.ts": "11f5cedb6c49e38cae3901a1c28cb09d7f1761a5291e2ab1d9c936014a5af142",
+        "src/sim/rng.ts": "52dbf6a9e19133db09936e81128b9f55212da47b817752ed264f7bcaee0cfc90",
+        "src/sim/route.ts": "ea573a8775162cdbf7270b10e936ecdf4aabfb360fa87babe7132a7b01df4e30",
+        "src/sim/sensor.ts": "44736a6556a25f14c4538c0747ed13ae90801eefda074b3458baeae90b737d15",
+        "src/sim/simulate.ts": "e29adabdb7f5a0ade0f36157bb41ff203624a83f1597aaa901d466a040fe88ff",
+        "src/sim/subject.ts": "5c4bc7bb913a22dfe7dea4dc50def6eb29c4b0e5f3845681ae152f1525f4b16c",
+        "src/sim/tracker.ts": "d1ac4c6c3c92eff1e1e44c30497df4c2c5c46c082bbb9f2a8605f9c9762c2dc3",
+        "src/sim/types.ts": "cc55625b321c97766e6f5826ca7856450e0ddf00355f7e2fb317ea7e8951dcd4",
+        "src/sim/world.ts": "43996f2bf1e83dbd1dadfa4f0ba7c4c14004c6d15b33815e843f895d4dd2b9f8",
+        "tools/gen_episodes.ts": "d8ddc48c9b0fe21dba0f145c5719efcbf31a020229c887ad7c9cac5ceee7a75f"
+      }
+    },
+    "featureSchemaSha256": "5566134300fcdaaf440084acb83b79f4d832738b7549dea2841aea344c04ec5c"
+  },
+  "limitations": [
+    "Trained and evaluated only on synthetic simulator episodes of a hand-written evasive subject; says nothing about real people, real drones or real forests.",
+    "Training data were collected under the Kalman guidance policy (coarse-start set-up); closed-loop use under learned guidance is a distribution shift.",
+    "The drone is set up from a coarse (16 m cell) designated start area; the model receives no start position and is only run after the first noisy fix.",
+    "The 95% region is validation-calibrated (target 95%); measured held-out coverage differs and is reported in calibration.region95.measured, not guaranteed.",
+    "The grid covers 128 m x 128 m around the last fix; subject mass outside it is not modelled.",
+    "Illustrative demo model: no safety, field-performance or clinical claims."
+  ]
+}

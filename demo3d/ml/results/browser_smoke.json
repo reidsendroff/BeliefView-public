@@ -1,0 +1,244 @@
+{
+ "schema": 1,
+ "browser": "153.0.8010.12",
+ "calls": 36,
+ "loadMs": 154.2000002861023,
+ "p50Ms": 2.9000000953674316,
+ "p95Ms": 3.1999998092651367,
+ "maxMs": 3.5,
+ "precomputeWallMs": 1467,
+ "modelSha256": "6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2",
+ "checksPassed": 57,
+ "checksFailed": 0,
+ "checks": [
+  {
+   "ok": true,
+   "msg": "default load is Kalman guidance"
+  },
+  {
+   "ok": true,
+   "msg": "default (Kalman) page fetches no model, manifest or wasm"
+  },
+  {
+   "ok": true,
+   "msg": "status says the model is not loaded in Kalman mode"
+  },
+  {
+   "ok": true,
+   "msg": "default Kalman run uses the coarse set-up (drone start from designated area, not the exact subject start)"
+  },
+  {
+   "ok": true,
+   "msg": "element #chip present"
+  },
+  {
+   "ok": true,
+   "msg": "element #caption present"
+  },
+  {
+   "ok": true,
+   "msg": "element #minimap present"
+  },
+  {
+   "ok": true,
+   "msg": "element #inset present"
+  },
+  {
+   "ok": true,
+   "msg": "element #disclosure present"
+  },
+  {
+   "ok": true,
+   "msg": "element #cam-label present"
+  },
+  {
+   "ok": true,
+   "msg": "element #altgauge present"
+  },
+  {
+   "ok": true,
+   "msg": "element #timeline present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-pred present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-see present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-frus present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-map present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-trail present"
+  },
+  {
+   "ok": true,
+   "msg": "element #t-truth present"
+  },
+  {
+   "ok": true,
+   "msg": "element #b-play present"
+  },
+  {
+   "ok": true,
+   "msg": "element #scrub present"
+  },
+  {
+   "ok": true,
+   "msg": "element #ml-disclosure present"
+  },
+  {
+   "ok": true,
+   "msg": "existing synthetic disclosure banner unchanged"
+  },
+  {
+   "ok": true,
+   "msg": "four camera buttons"
+  },
+  {
+   "ok": true,
+   "msg": "Kalman mode: the learned-overlay checkbox is unchecked and disabled"
+  },
+  {
+   "ok": true,
+   "msg": "Kalman mode: selector shows Kalman active"
+  },
+  {
+   "ok": true,
+   "msg": "Kalman mode: active-guidance line says Kalman"
+  },
+  {
+   "ok": true,
+   "msg": "Kalman mode: original Prediction & uncertainty label unchanged"
+  },
+  {
+   "ok": true,
+   "msg": "no console/page errors in Kalman mode "
+  },
+  {
+   "ok": true,
+   "msg": "learned mode active (model loaded and used)"
+  },
+  {
+   "ok": true,
+   "msg": "browser fetched manifest.json and model.onnx"
+  },
+  {
+   "ok": true,
+   "msg": "browser fetched the onnxruntime wasm from this origin (no CDN)"
+  },
+  {
+   "ok": true,
+   "msg": "ONNX inference ran 36 times at fixed simulation steps"
+  },
+  {
+   "ok": true,
+   "msg": "learned scorer chose 32 search viewpoints"
+  },
+  {
+   "ok": true,
+   "msg": "belief grids recorded in the timeline"
+  },
+  {
+   "ok": true,
+   "msg": "status shows model provenance: Model: ready · beliefview3d-search-v1 v2.0.0 · sha256 6c530b90a72e… · 251 KB · loaded in 154 ms"
+  },
+  {
+   "ok": true,
+   "msg": "learned mode: active-guidance line says Learned"
+  },
+  {
+   "ok": true,
+   "msg": "learned mode: the existing Kalman corridor toggle is labelled as the tracker's, not the learned model's"
+  },
+  {
+   "ok": true,
+   "msg": "learned mode: learned-overlay checkbox is checked and enabled"
+  },
+  {
+   "ok": true,
+   "msg": "UI says validation-calibrated region, not 'Calibrated 95% region'"
+  },
+  {
+   "ok": true,
+   "msg": "UI shows measured held-out coverage: 94.8% (historical final audit, original policy/terrain) · not guaranteed"
+  },
+  {
+   "ok": true,
+   "msg": "synthetic disclosure for the learned model is visible"
+  },
+  {
+   "ok": true,
+   "msg": "learned probability overlay visible while the fix is missing"
+  },
+  {
+   "ok": true,
+   "msg": "uncertainty readout: 2 peak(s), 95% region 512 m2"
+  },
+  {
+   "ok": true,
+   "msg": "probability heat is drawn on the minimap (1105 px)"
+  },
+  {
+   "ok": true,
+   "msg": "G toggles the learned overlay off"
+  },
+  {
+   "ok": true,
+   "msg": "learned-guidance playback differs from Kalman (guidance is active)"
+  },
+  {
+   "ok": true,
+   "msg": "no console/page errors in learned mode "
+  },
+  {
+   "ok": true,
+   "msg": "selector switches back to Kalman"
+  },
+  {
+   "ok": true,
+   "msg": "deterministic playback: second load reproduces identical learned-guidance frames"
+  },
+  {
+   "ok": true,
+   "msg": "missing manifest -> Kalman fallback with an error"
+  },
+  {
+   "ok": true,
+   "msg": "status reports model unavailable"
+  },
+  {
+   "ok": true,
+   "msg": "fallback: selector shows Kalman as the ACTIVE policy (not the requested learned one)"
+  },
+  {
+   "ok": true,
+   "msg": "fallback: active-guidance line says Kalman FALLBACK"
+  },
+  {
+   "ok": true,
+   "msg": "fallback: learned-overlay checkbox is unchecked"
+  },
+  {
+   "ok": true,
+   "msg": "fallback frames are identical to the default Kalman run"
+  },
+  {
+   "ok": true,
+   "msg": "error fallback Kalman run also uses the coarse set-up"
+  },
+  {
+   "ok": true,
+   "msg": "tampered model bytes are rejected by the hash check (Kalman fallback)"
+  }
+ ],
+ "note": "headless Chromium + swiftshader on the development machine, onnxruntime-web wasm EP, 1 thread; indicative only"
+}

@@ -1,0 +1,4779 @@
+{
+ "config": {
+  "split": "test",
+  "evaluationRole": "DEVELOPMENT",
+  "episodes": 100,
+  "stride_s": 1,
+  "model": "beliefview3d-search-v1",
+  "modelSha256": "6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2",
+  "runtime": "onnxruntime-web 1.31.1 (Node, wasm EP, 1 thread)"
+ },
+ "note": "Subject reacts to the drone, so subject paths differ between the two runs (see divergence). Differences are paired by scenario seed but are not controlled counterfactuals.",
+ "baselineNote": "Primary baseline = Kalman guidance with the same coarse start set-up as the learned run. 'vsKalmanExactStart' is an evaluation-only legacy reference that starts at the subject's exact position (an information advantage neither browser guidance mode receives).",
+ "overall": {
+  "episodes": 100,
+  "bothRunsHaveALoss": 100,
+  "firstLossSearchTimeS": {
+   "n": 100,
+   "meanKalman": 10.190499999999997,
+   "meanMl": 8.190499999999997,
+   "meanDiffMlMinusKalman": -2.0000000000000004,
+   "ci95": [
+    -4.2025,
+    -0.2224999999999999
+   ],
+   "mlBetter": 25,
+   "mlWorse": 8,
+   "ties": 67
+  },
+  "unobservedTotalS": {
+   "n": 100,
+   "meanKalman": 39.44599999999977,
+   "meanMl": 35.879999999999946,
+   "meanDiffMlMinusKalman": -3.5659999999998293,
+   "ci95": [
+    -6.57899999999968,
+    -0.524499999999962
+   ],
+   "mlBetter": 51,
+   "mlWorse": 39,
+   "ties": 10
+  },
+  "firstLossReacquired": {
+   "kalman": 97,
+   "ml": 100,
+   "of": 100
+  }
+ },
+ "vsKalmanExactStart": {
+  "episodes": 100,
+  "bothRunsHaveALoss": 100,
+  "firstLossSearchTimeS": {
+   "n": 100,
+   "meanKalman": 9.5245,
+   "meanMl": 8.190499999999997,
+   "meanDiffMlMinusKalman": -1.3339999999999999,
+   "ci95": [
+    -3.830000000000001,
+    0.6279999999999998
+   ],
+   "mlBetter": 37,
+   "mlWorse": 59,
+   "ties": 4
+  },
+  "unobservedTotalS": {
+   "n": 100,
+   "meanKalman": 42.0109999999996,
+   "meanMl": 35.879999999999946,
+   "meanDiffMlMinusKalman": -6.130999999999655,
+   "ci95": [
+    -9.862999999999467,
+    -2.444499999999833
+   ],
+   "mlBetter": 60,
+   "mlWorse": 40,
+   "ties": 0
+  },
+  "firstLossReacquired": {
+   "kalman": 97,
+   "ml": 100,
+   "of": 100
+  }
+ },
+ "byScenarioGroup": {
+  "hide": {
+   "episodes": 96,
+   "bothRunsHaveALoss": 96,
+   "firstLossSearchTimeS": {
+    "n": 96,
+    "meanKalman": 10.343229166666662,
+    "meanMl": 8.259895833333331,
+    "meanDiffMlMinusKalman": -2.0833333333333335,
+    "ci95": [
+     -4.393229166666668,
+     -0.24218749999999997
+    ],
+    "mlBetter": 25,
+    "mlWorse": 8,
+    "ties": 63
+   },
+   "unobservedTotalS": {
+    "n": 96,
+    "meanKalman": 39.996354166666414,
+    "meanMl": 36.02031249999993,
+    "meanDiffMlMinusKalman": -3.9760416666664855,
+    "ci95": [
+     -7.194791666666327,
+     -0.8619791666666302
+    ],
+    "mlBetter": 51,
+    "mlWorse": 36,
+    "ties": 9
+   },
+   "firstLossReacquired": {
+    "kalman": 93,
+    "ml": 96,
+    "of": 96
+   }
+  },
+  "turn": {
+   "episodes": 100,
+   "bothRunsHaveALoss": 100,
+   "firstLossSearchTimeS": {
+    "n": 100,
+    "meanKalman": 10.190499999999997,
+    "meanMl": 8.190499999999997,
+    "meanDiffMlMinusKalman": -2.0000000000000004,
+    "ci95": [
+     -4.2025,
+     -0.2224999999999999
+    ],
+    "mlBetter": 25,
+    "mlWorse": 8,
+    "ties": 67
+   },
+   "unobservedTotalS": {
+    "n": 100,
+    "meanKalman": 39.44599999999977,
+    "meanMl": 35.879999999999946,
+    "meanDiffMlMinusKalman": -3.5659999999998293,
+    "ci95": [
+     -6.57899999999968,
+     -0.524499999999962
+    ],
+    "mlBetter": 51,
+    "mlWorse": 39,
+    "ties": 10
+   },
+   "firstLossReacquired": {
+    "kalman": 97,
+    "ml": 100,
+    "of": 100
+   }
+  },
+  "long": {
+   "episodes": 68,
+   "bothRunsHaveALoss": 68,
+   "firstLossSearchTimeS": {
+    "n": 68,
+    "meanKalman": 11.783088235294112,
+    "meanMl": 8.841176470588232,
+    "meanDiffMlMinusKalman": -2.941911764705883,
+    "ci95": [
+     -6.359558823529413,
+     -0.36176470588235304
+    ],
+    "mlBetter": 25,
+    "mlWorse": 7,
+    "ties": 36
+   },
+   "unobservedTotalS": {
+    "n": 68,
+    "meanKalman": 44.327205882352494,
+    "meanMl": 38.105882352940995,
+    "meanDiffMlMinusKalman": -6.221323529411487,
+    "ci95": [
+     -10.352941176470049,
+     -2.1808823529410715
+    ],
+    "mlBetter": 41,
+    "mlWorse": 21,
+    "ties": 6
+   },
+   "firstLossReacquired": {
+    "kalman": 65,
+    "ml": 68,
+    "of": 68
+   }
+  },
+  "reacq": {
+   "episodes": 97,
+   "bothRunsHaveALoss": 97,
+   "firstLossSearchTimeS": {
+    "n": 97,
+    "meanKalman": 8.352577319587624,
+    "meanMl": 8.093298969072162,
+    "meanDiffMlMinusKalman": -0.2592783505154639,
+    "ci95": [
+     -0.7685567010309277,
+     0.2154639175257734
+    ],
+    "mlBetter": 22,
+    "mlWorse": 8,
+    "ties": 67
+   },
+   "unobservedTotalS": {
+    "n": 97,
+    "meanKalman": 38.51443298969054,
+    "meanMl": 36.04484536082469,
+    "meanDiffMlMinusKalman": -2.469587628865862,
+    "ci95": [
+     -5.3108247422678065,
+     0.31546391752574354
+    ],
+    "mlBetter": 48,
+    "mlWorse": 39,
+    "ties": 10
+   },
+   "firstLossReacquired": {
+    "kalman": 97,
+    "ml": 97,
+    "of": 97
+   }
+  }
+ },
+ "groupCounts": {
+  "hide": 96,
+  "turn": 100,
+  "long": 68,
+  "reacq": 97
+ },
+ "subjectDivergenceRmsM": {
+  "median": 22.734027532703088,
+  "p90": 50.69811953371781
+ },
+ "physicalLimits": {
+  "kalman": {
+   "minAglM": 1.9999999999999996,
+   "maxHSpeedMps": 8.033316120261267
+  },
+  "kalmanExactStart": {
+   "minAglM": 1.9999999999999996,
+   "maxHSpeedMps": 8.097924278873474
+  },
+  "ml": {
+   "minAglM": 1.9999999999999996,
+   "maxHSpeedMps": 8.113354076612588
+  }
+ },
+ "learnedGuidance": {
+  "viewpointChoicesByLearned": 2159,
+  "fallbacksToKalmanViewpoint": 17,
+  "predictionTicks": 2515
+ },
+ "nodeOnnxLatencyMs": {
+  "calls": 2515,
+  "p50": 0.890625,
+  "p95": 1.0160830000022543,
+  "mean": 0.896193691053862,
+  "caveat": "Node wasm, not a browser; the browser number is in browser_smoke.json"
+ },
+ "mlSimWallSecondsPerEpisode": {
+  "median": 0.961119417000009,
+  "p90": 1.3551189579999992
+ },
+ "mlWorseEpisodes": {
+  "criterion": "ML total unobserved time exceeds Kalman's by more than 2 s",
+  "count": 33,
+  "of": 100,
+  "cases": [
+   {
+    "id": "test-46",
+    "worldSeed": 40046,
+    "subjectSeed": 45046,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.55,
+    "firstLossMlS": 9.55,
+    "unobservedKalmanS": 33.35000000000024,
+    "unobservedMlS": 67.84999999999829,
+    "unobservedDiffS": 34.499999999998046,
+    "divergenceRmsM": 37.222624347218755
+   },
+   {
+    "id": "test-26",
+    "worldSeed": 40026,
+    "subjectSeed": 45026,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 10.7,
+    "firstLossMlS": 8.75,
+    "unobservedKalmanS": 26.800000000000246,
+    "unobservedMlS": 59.549999999998754,
+    "unobservedDiffS": 32.74999999999851,
+    "divergenceRmsM": 56.963865917382456
+   },
+   {
+    "id": "test-95",
+    "worldSeed": 40095,
+    "subjectSeed": 45095,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.65,
+    "firstLossMlS": 6.65,
+    "unobservedKalmanS": 39.24999999999991,
+    "unobservedMlS": 71.79999999999806,
+    "unobservedDiffS": 32.54999999999816,
+    "divergenceRmsM": 27.03128561095721
+   },
+   {
+    "id": "test-55",
+    "worldSeed": 40055,
+    "subjectSeed": 45055,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 15.250000000000002,
+    "firstLossMlS": 14.049999999999999,
+    "unobservedKalmanS": 39.19999999999991,
+    "unobservedMlS": 67.6499999999983,
+    "unobservedDiffS": 28.44999999999839,
+    "divergenceRmsM": 41.526799799734405
+   },
+   {
+    "id": "test-6",
+    "worldSeed": 40006,
+    "subjectSeed": 45006,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.25,
+    "firstLossMlS": 7.25,
+    "unobservedKalmanS": 30.7000000000003,
+    "unobservedMlS": 54.19999999999906,
+    "unobservedDiffS": 23.499999999998757,
+    "divergenceRmsM": 22.643023726030588
+   },
+   {
+    "id": "test-14",
+    "worldSeed": 40014,
+    "subjectSeed": 45014,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.1,
+    "firstLossMlS": 8.65,
+    "unobservedKalmanS": 32.450000000000294,
+    "unobservedMlS": 47.99999999999941,
+    "unobservedDiffS": 15.549999999999116,
+    "divergenceRmsM": 82.78179539685163
+   },
+   {
+    "id": "test-18",
+    "worldSeed": 40018,
+    "subjectSeed": 45018,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.650000000000001,
+    "firstLossMlS": 6.650000000000001,
+    "unobservedKalmanS": 24.700000000000216,
+    "unobservedMlS": 40.199999999999854,
+    "unobservedDiffS": 15.499999999999638,
+    "divergenceRmsM": 26.867053310975887
+   },
+   {
+    "id": "test-45",
+    "worldSeed": 40045,
+    "subjectSeed": 45045,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 8.700000000000001,
+    "firstLossMlS": 9.05,
+    "unobservedKalmanS": 38.399999999999956,
+    "unobservedMlS": 53.79999999999908,
+    "unobservedDiffS": 15.399999999999125,
+    "divergenceRmsM": 50.69811953371781
+   },
+   {
+    "id": "test-15",
+    "worldSeed": 40015,
+    "subjectSeed": 45015,
+    "groups": [
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.25,
+    "firstLossMlS": 6.25,
+    "unobservedKalmanS": 23.150000000000194,
+    "unobservedMlS": 37.05000000000003,
+    "unobservedDiffS": 13.899999999999839,
+    "divergenceRmsM": 31.603848157465798
+   },
+   {
+    "id": "test-35",
+    "worldSeed": 40035,
+    "subjectSeed": 45035,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 11.950000000000001,
+    "firstLossMlS": 9.100000000000001,
+    "unobservedKalmanS": 35.35000000000013,
+    "unobservedMlS": 47.24999999999945,
+    "unobservedDiffS": 11.899999999999324,
+    "divergenceRmsM": 35.543694871506496
+   },
+   {
+    "id": "test-12",
+    "worldSeed": 40012,
+    "subjectSeed": 45012,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.800000000000001,
+    "firstLossMlS": 7.800000000000001,
+    "unobservedKalmanS": 26.40000000000024,
+    "unobservedMlS": 37.74999999999999,
+    "unobservedDiffS": 11.349999999999753,
+    "divergenceRmsM": 36.57517237953249
+   },
+   {
+    "id": "test-93",
+    "worldSeed": 40093,
+    "subjectSeed": 45093,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.3,
+    "firstLossMlS": 6.3,
+    "unobservedKalmanS": 41.599999999999774,
+    "unobservedMlS": 51.799999999999194,
+    "unobservedDiffS": 10.19999999999942,
+    "divergenceRmsM": 3.168214583391473
+   },
+   {
+    "id": "test-34",
+    "worldSeed": 40034,
+    "subjectSeed": 45034,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7,
+    "firstLossMlS": 7,
+    "unobservedKalmanS": 61.54999999999864,
+    "unobservedMlS": 70.69999999999813,
+    "unobservedDiffS": 9.149999999999487,
+    "divergenceRmsM": 53.514030380820074
+   },
+   {
+    "id": "test-88",
+    "worldSeed": 40088,
+    "subjectSeed": 45088,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.9,
+    "firstLossMlS": 7.9,
+    "unobservedKalmanS": 27.75000000000026,
+    "unobservedMlS": 36.150000000000084,
+    "unobservedDiffS": 8.399999999999824,
+    "divergenceRmsM": 27.491617305600755
+   },
+   {
+    "id": "test-69",
+    "worldSeed": 40069,
+    "subjectSeed": 45069,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.15,
+    "firstLossMlS": 6.15,
+    "unobservedKalmanS": 26.150000000000237,
+    "unobservedMlS": 33.500000000000234,
+    "unobservedDiffS": 7.349999999999998,
+    "divergenceRmsM": 10.767775254151552
+   },
+   {
+    "id": "test-44",
+    "worldSeed": 40044,
+    "subjectSeed": 45044,
+    "groups": [
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.15,
+    "firstLossMlS": 6.15,
+    "unobservedKalmanS": 24.800000000000217,
+    "unobservedMlS": 32.00000000000032,
+    "unobservedDiffS": 7.200000000000102,
+    "divergenceRmsM": 10.496532184297001
+   },
+   {
+    "id": "test-8",
+    "worldSeed": 40008,
+    "subjectSeed": 45008,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.65,
+    "firstLossMlS": 9.65,
+    "unobservedKalmanS": 24.850000000000218,
+    "unobservedMlS": 31.600000000000314,
+    "unobservedDiffS": 6.750000000000096,
+    "divergenceRmsM": 30.56205424692768
+   },
+   {
+    "id": "test-54",
+    "worldSeed": 40054,
+    "subjectSeed": 45054,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.15,
+    "firstLossMlS": 7.15,
+    "unobservedKalmanS": 33.95000000000021,
+    "unobservedMlS": 40.44999999999984,
+    "unobservedDiffS": 6.4999999999996305,
+    "divergenceRmsM": 40.7194247412327
+   },
+   {
+    "id": "test-20",
+    "worldSeed": 40020,
+    "subjectSeed": 45020,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.9,
+    "firstLossMlS": 20.300000000000004,
+    "unobservedKalmanS": 30.400000000000297,
+    "unobservedMlS": 36.45000000000007,
+    "unobservedDiffS": 6.04999999999977,
+    "divergenceRmsM": 17.90992040119704
+   },
+   {
+    "id": "test-24",
+    "worldSeed": 40024,
+    "subjectSeed": 45024,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.45,
+    "firstLossMlS": 7.45,
+    "unobservedKalmanS": 21.700000000000173,
+    "unobservedMlS": 27.550000000000257,
+    "unobservedDiffS": 5.850000000000083,
+    "divergenceRmsM": 14.078248049062902
+   },
+   {
+    "id": "test-47",
+    "worldSeed": 40047,
+    "subjectSeed": 45047,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 10.9,
+    "firstLossMlS": 9.85,
+    "unobservedKalmanS": 32.450000000000294,
+    "unobservedMlS": 37.699999999999996,
+    "unobservedDiffS": 5.249999999999702,
+    "divergenceRmsM": 55.427758708065646
+   },
+   {
+    "id": "test-37",
+    "worldSeed": 40037,
+    "subjectSeed": 45037,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.900000000000002,
+    "firstLossMlS": 11.850000000000001,
+    "unobservedKalmanS": 27.00000000000025,
+    "unobservedMlS": 32.20000000000031,
+    "unobservedDiffS": 5.20000000000006,
+    "divergenceRmsM": 14.001396692620734
+   },
+   {
+    "id": "test-31",
+    "worldSeed": 40031,
+    "subjectSeed": 45031,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.250000000000001,
+    "firstLossMlS": 6.250000000000001,
+    "unobservedKalmanS": 27.70000000000026,
+    "unobservedMlS": 32.55000000000029,
+    "unobservedDiffS": 4.85000000000003,
+    "divergenceRmsM": 31.88763469288158
+   },
+   {
+    "id": "test-81",
+    "worldSeed": 40081,
+    "subjectSeed": 45081,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 8.65,
+    "firstLossMlS": 9.35,
+    "unobservedKalmanS": 29.550000000000285,
+    "unobservedMlS": 34.200000000000195,
+    "unobservedDiffS": 4.64999999999991,
+    "divergenceRmsM": 13.789133416951747
+   },
+   {
+    "id": "test-23",
+    "worldSeed": 40023,
+    "subjectSeed": 45023,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 3.4500000000000006,
+    "firstLossMlS": 3.4500000000000006,
+    "unobservedKalmanS": 26.950000000000248,
+    "unobservedMlS": 31.550000000000313,
+    "unobservedDiffS": 4.600000000000065,
+    "divergenceRmsM": 31.458157199974316
+   },
+   {
+    "id": "test-65",
+    "worldSeed": 40065,
+    "subjectSeed": 45065,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 9.700000000000001,
+    "firstLossMlS": 7.800000000000001,
+    "unobservedKalmanS": 27.400000000000254,
+    "unobservedMlS": 31.500000000000313,
+    "unobservedDiffS": 4.100000000000058,
+    "divergenceRmsM": 32.27892432997637
+   },
+   {
+    "id": "test-25",
+    "worldSeed": 40025,
+    "subjectSeed": 45025,
+    "groups": [
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.200000000000001,
+    "firstLossMlS": 7.200000000000001,
+    "unobservedKalmanS": 31.95000000000032,
+    "unobservedMlS": 35.950000000000095,
+    "unobservedDiffS": 3.999999999999776,
+    "divergenceRmsM": 15.40532622147571
+   },
+   {
+    "id": "test-21",
+    "worldSeed": 40021,
+    "subjectSeed": 45021,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 7.800000000000001,
+    "firstLossMlS": 7.800000000000001,
+    "unobservedKalmanS": 29.450000000000284,
+    "unobservedMlS": 32.90000000000027,
+    "unobservedDiffS": 3.449999999999985,
+    "divergenceRmsM": 3.984662831960214
+   },
+   {
+    "id": "test-75",
+    "worldSeed": 40075,
+    "subjectSeed": 45075,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 8.5,
+    "firstLossMlS": 8.5,
+    "unobservedKalmanS": 30.7000000000003,
+    "unobservedMlS": 33.850000000000215,
+    "unobservedDiffS": 3.1499999999999133,
+    "divergenceRmsM": 13.167331663230858
+   },
+   {
+    "id": "test-28",
+    "worldSeed": 40028,
+    "subjectSeed": 45028,
+    "groups": [
+     "hide",
+     "turn",
+     "reacq"
+    ],
+    "firstLossKalmanS": 5.55,
+    "firstLossMlS": 5.55,
+    "unobservedKalmanS": 25.350000000000225,
+    "unobservedMlS": 28.45000000000027,
+    "unobservedDiffS": 3.100000000000044,
+    "divergenceRmsM": 15.991878434781501
+   },
+   {
+    "id": "test-84",
+    "worldSeed": 40084,
+    "subjectSeed": 45084,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 6.300000000000001,
+    "firstLossMlS": 6.300000000000001,
+    "unobservedKalmanS": 34.900000000000155,
+    "unobservedMlS": 37.79999999999999,
+    "unobservedDiffS": 2.899999999999835,
+    "divergenceRmsM": 14.739787466406902
+   },
+   {
+    "id": "test-73",
+    "worldSeed": 40073,
+    "subjectSeed": 45073,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 16.400000000000002,
+    "firstLossMlS": 13.65,
+    "unobservedKalmanS": 34.900000000000155,
+    "unobservedMlS": 37.6,
+    "unobservedDiffS": 2.6999999999998465,
+    "divergenceRmsM": 17.738997433617392
+   },
+   {
+    "id": "test-76",
+    "worldSeed": 40076,
+    "subjectSeed": 45076,
+    "groups": [
+     "hide",
+     "turn",
+     "long",
+     "reacq"
+    ],
+    "firstLossKalmanS": 8.75,
+    "firstLossMlS": 8.150000000000002,
+    "unobservedKalmanS": 25.65000000000023,
+    "unobservedMlS": 27.70000000000026,
+    "unobservedDiffS": 2.050000000000029,
+    "divergenceRmsM": 18.516832316044535
+   }
+  ]
+ },
+ "perEpisode": [
+  {
+   "id": "test-0",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.45,
+    "firstLossReacquired": true,
+    "unobservedS": 39.84999999999987,
+    "meanRunS": 9.416666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.250000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.70000000000026,
+    "meanRunS": 3.300000000000002,
+    "reacquiredRuns": 3,
+    "minAgl": 2.01250894433226,
+    "maxHSpeed": 8.01565477177604
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.45,
+    "firstLossReacquired": true,
+    "unobservedS": 39.54999999999989,
+    "meanRunS": 14.975,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 2.6289998376795896
+  },
+  {
+   "id": "test-1",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 42.34999999999973,
+    "meanRunS": 6.790000000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 23.100000000000193,
+    "meanRunS": 3.399999999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 2.3415939883457346,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.700000000000315,
+    "meanRunS": 3.05,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.023304014216274
+   },
+   "divergenceRmsM": 25.138484836969198
+  },
+  {
+   "id": "test-2",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.1499999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 50.049999999999294,
+    "meanRunS": 15.449999999999998,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.050000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.300000000000225,
+    "meanRunS": 4.000000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.1499999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 21.800000000000175,
+    "meanRunS": 4.049999999999999,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 13.479745912190182
+  },
+  {
+   "id": "test-3",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 71.44999999999808,
+    "meanRunS": 35.77499999999999,
+    "reacquiredRuns": 1,
+    "minAgl": 2.269424474383002,
+    "maxHSpeed": 7.951600479971628
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.850000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 64.0999999999985,
+    "meanRunS": 31.325,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 37.65,
+    "meanRunS": 4.050000000000001,
+    "reacquiredRuns": 7,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 50.78555855587754
+  },
+  {
+   "id": "test-4",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.250000000000224,
+    "meanRunS": 3.9999999999999987,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.993687673481022
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.250000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 60.949999999998674,
+    "meanRunS": 14.5375,
+    "reacquiredRuns": 3,
+    "minAgl": 2.114747504613347,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.15000000000025,
+    "meanRunS": 4.1125,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.993687673481022
+   },
+   "divergenceRmsM": 12.733563769912214
+  },
+  {
+   "id": "test-5",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.05,
+    "firstLossReacquired": true,
+    "unobservedS": 25.350000000000225,
+    "meanRunS": 3.6833333333333313,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.954027206812324
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.650000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.60000000000023,
+    "meanRunS": 4.850000000000003,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.771098014329424
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.05,
+    "firstLossReacquired": true,
+    "unobservedS": 25.350000000000225,
+    "meanRunS": 3.6833333333333313,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.954027206812324
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-6",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.25,
+    "firstLossReacquired": true,
+    "unobservedS": 30.7000000000003,
+    "meanRunS": 3.46,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.1499999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 49.34999999999933,
+    "meanRunS": 14.58333333333333,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.25,
+    "firstLossReacquired": true,
+    "unobservedS": 54.19999999999906,
+    "meanRunS": 11.599999999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 2.3952495730692536,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 22.643023726030588
+  },
+  {
+   "id": "test-7",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 5.750000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 56.64999999999892,
+    "meanRunS": 17.9,
+    "reacquiredRuns": 2,
+    "minAgl": 2.1818314164196475,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.900000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 55.44999999999899,
+    "meanRunS": 18.066666666666663,
+    "reacquiredRuns": 2,
+    "minAgl": 2.036919510664156,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 5.750000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 56.64999999999892,
+    "meanRunS": 17.9,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.41541095051353
+   },
+   "divergenceRmsM": 24.546532233273712
+  },
+  {
+   "id": "test-8",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.65,
+    "firstLossReacquired": true,
+    "unobservedS": 24.850000000000218,
+    "meanRunS": 5.675,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 11.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 66.94999999999834,
+    "meanRunS": 32.425,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 7.96214915487289
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.65,
+    "firstLossReacquired": true,
+    "unobservedS": 31.600000000000314,
+    "meanRunS": 6.100000000000001,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 30.56205424692768
+  },
+  {
+   "id": "test-9",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 6,
+    "firstLossTimeS": 10.95,
+    "firstLossReacquired": true,
+    "unobservedS": 36.40000000000007,
+    "meanRunS": 3.908333333333333,
+    "reacquiredRuns": 6,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 58.49999999999881,
+    "meanRunS": 18.05,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.888641560984945
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 10.75,
+    "firstLossReacquired": true,
+    "unobservedS": 33.150000000000254,
+    "meanRunS": 5.260000000000002,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 25.059785612586605
+  },
+  {
+   "id": "test-10",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 54.449999999999044,
+    "meanRunS": 26.224999999999998,
+    "reacquiredRuns": 1,
+    "minAgl": 2.2547922151442066,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.2,
+    "firstLossReacquired": true,
+    "unobservedS": 19.45000000000014,
+    "meanRunS": 4.5749999999999975,
+    "reacquiredRuns": 2,
+    "minAgl": 2.1395841677550105,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.550000000000228,
+    "meanRunS": 3.2874999999999996,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 13.512919904233847
+  },
+  {
+   "id": "test-11",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 43.39999999999967,
+    "meanRunS": 5.416666666666665,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 72.5,
+    "firstLossReacquired": false,
+    "unobservedS": 72.44999999999803,
+    "meanRunS": 72.5,
+    "reacquiredRuns": 0,
+    "minAgl": 2.2123997286904453,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 43.149999999999686,
+    "meanRunS": 4.664285714285716,
+    "reacquiredRuns": 7,
+    "minAgl": 2.1432712624846864,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 31.75686450812402
+  },
+  {
+   "id": "test-12",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 26.40000000000024,
+    "meanRunS": 3.200000000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.000000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 65.39999999999843,
+    "meanRunS": 32.275,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0000281085035985,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 37.74999999999999,
+    "meanRunS": 4.77142857142857,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 36.57517237953249
+  },
+  {
+   "id": "test-13",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 29.400000000000283,
+    "meanRunS": 4.874999999999999,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.8,
+    "firstLossReacquired": true,
+    "unobservedS": 65.49999999999842,
+    "meanRunS": 32,
+    "reacquiredRuns": 1,
+    "minAgl": 2.047205309676815,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 29.400000000000283,
+    "meanRunS": 4.874999999999999,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-14",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.1,
+    "firstLossReacquired": true,
+    "unobservedS": 32.450000000000294,
+    "meanRunS": 5.0749999999999975,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.983547738336333
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.25,
+    "firstLossReacquired": true,
+    "unobservedS": 61.89999999999862,
+    "meanRunS": 18.98333333333333,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.21285981345568
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.65,
+    "firstLossReacquired": true,
+    "unobservedS": 47.99999999999941,
+    "meanRunS": 13.249999999999998,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0011003168695254,
+    "maxHSpeed": 7.996446814546664
+   },
+   "divergenceRmsM": 82.78179539685163
+  },
+  {
+   "id": "test-15",
+   "groups": [
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.25,
+    "firstLossReacquired": true,
+    "unobservedS": 23.150000000000194,
+    "meanRunS": 2.7375,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.75,
+    "firstLossReacquired": true,
+    "unobservedS": 66.69999999999835,
+    "meanRunS": 32.849999999999994,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 7.862535583051841
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.25,
+    "firstLossReacquired": true,
+    "unobservedS": 37.05000000000003,
+    "meanRunS": 4.6199999999999966,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 31.603848157465798
+  },
+  {
+   "id": "test-16",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 21.05,
+    "firstLossReacquired": true,
+    "unobservedS": 53.29999999999911,
+    "meanRunS": 15.933333333333332,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.983338139115658
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 16.2,
+    "firstLossReacquired": true,
+    "unobservedS": 48.29999999999939,
+    "meanRunS": 12.5,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.8528951937501414
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 32.85,
+    "firstLossReacquired": true,
+    "unobservedS": 46.4499999999995,
+    "meanRunS": 17.3,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.003912765735778
+   },
+   "divergenceRmsM": 42.07560466132775
+  },
+  {
+   "id": "test-17",
+   "groups": [
+    "hide",
+    "turn",
+    "long"
+   ],
+   "kalman": {
+    "lostRuns": 1,
+    "firstLossTimeS": 71.45,
+    "firstLossReacquired": false,
+    "unobservedS": 71.39999999999809,
+    "meanRunS": 71.45,
+    "reacquiredRuns": 0,
+    "minAgl": 2.292896788885976,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 71.45,
+    "firstLossReacquired": false,
+    "unobservedS": 71.39999999999809,
+    "meanRunS": 71.45,
+    "reacquiredRuns": 0,
+    "minAgl": 2.0894137952803176,
+    "maxHSpeed": 8.009929028404512
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.65,
+    "firstLossReacquired": true,
+    "unobservedS": 27.15000000000025,
+    "meanRunS": 5.4750000000000005,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0418236407160464,
+    "maxHSpeed": 7.963356733053109
+   },
+   "divergenceRmsM": 36.38857370729469
+  },
+  {
+   "id": "test-18",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.650000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 24.700000000000216,
+    "meanRunS": 2.7800000000000002,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 7.999999999999999
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 28.50000000000027,
+    "meanRunS": 3.700000000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.650000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 40.199999999999854,
+    "meanRunS": 6.537500000000003,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.912981346253562
+   },
+   "divergenceRmsM": 26.867053310975887
+  },
+  {
+   "id": "test-19",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 13.4,
+    "firstLossReacquired": true,
+    "unobservedS": 49.59999999999932,
+    "meanRunS": 9.45,
+    "reacquiredRuns": 3,
+    "minAgl": 2.178773134216434,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.000000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 34.95000000000015,
+    "meanRunS": 3.34166666666667,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.75000000000026,
+    "meanRunS": 4.083333333333332,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 32.015125904439294
+  },
+  {
+   "id": "test-20",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 9.9,
+    "firstLossReacquired": true,
+    "unobservedS": 30.400000000000297,
+    "meanRunS": 3.509999999999998,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 10.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 28.000000000000263,
+    "meanRunS": 5.749999999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 2.740469433525381,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 20.300000000000004,
+    "firstLossReacquired": true,
+    "unobservedS": 36.45000000000007,
+    "meanRunS": 6.159999999999999,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 17.90992040119704
+  },
+  {
+   "id": "test-21",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 29.450000000000284,
+    "meanRunS": 5.275,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.150000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 28.55000000000027,
+    "meanRunS": 3.3625000000000016,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 32.90000000000027,
+    "meanRunS": 5.233333333333331,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 3.984662831960214
+  },
+  {
+   "id": "test-22",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.35,
+    "firstLossReacquired": true,
+    "unobservedS": 48.29999999999939,
+    "meanRunS": 21.9,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.35,
+    "firstLossReacquired": true,
+    "unobservedS": 26.35000000000024,
+    "meanRunS": 3.8375,
+    "reacquiredRuns": 4,
+    "minAgl": 2.0171398944502665,
+    "maxHSpeed": 7.883266078303345
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.15,
+    "firstLossReacquired": true,
+    "unobservedS": 35.600000000000115,
+    "meanRunS": 6.687499999999998,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 37.52349278883429
+  },
+  {
+   "id": "test-23",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 3.4500000000000006,
+    "firstLossReacquired": true,
+    "unobservedS": 26.950000000000248,
+    "meanRunS": 3.319999999999999,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.000000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 29.20000000000028,
+    "meanRunS": 4.5625,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.024507825285703
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 3.4500000000000006,
+    "firstLossReacquired": true,
+    "unobservedS": 31.550000000000313,
+    "meanRunS": 4.259999999999998,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 31.458157199974316
+  },
+  {
+   "id": "test-24",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.45,
+    "firstLossReacquired": true,
+    "unobservedS": 21.700000000000173,
+    "meanRunS": 4.187499999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 2.2365263435537823,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 10.25,
+    "firstLossReacquired": true,
+    "unobservedS": 40.79999999999982,
+    "meanRunS": 10.933333333333332,
+    "reacquiredRuns": 2,
+    "minAgl": 2.448087339612491,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.45,
+    "firstLossReacquired": true,
+    "unobservedS": 27.550000000000257,
+    "meanRunS": 3.999999999999998,
+    "reacquiredRuns": 5,
+    "minAgl": 2.067220571250191,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 14.078248049062902
+  },
+  {
+   "id": "test-25",
+   "groups": [
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.95000000000032,
+    "meanRunS": 4.5875,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.75,
+    "firstLossReacquired": true,
+    "unobservedS": 27.650000000000258,
+    "meanRunS": 3.0125,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 35.950000000000095,
+    "meanRunS": 6.612500000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 2.000013327946509,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 15.40532622147571
+  },
+  {
+   "id": "test-26",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 10.7,
+    "firstLossReacquired": true,
+    "unobservedS": 26.800000000000246,
+    "meanRunS": 7.174999999999999,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 34.45000000000018,
+    "meanRunS": 4.6625000000000005,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.75,
+    "firstLossReacquired": true,
+    "unobservedS": 59.549999999998754,
+    "meanRunS": 13.5125,
+    "reacquiredRuns": 3,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 56.963865917382456
+  },
+  {
+   "id": "test-27",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.600000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 35.75000000000011,
+    "meanRunS": 6.200000000000003,
+    "reacquiredRuns": 3,
+    "minAgl": 2.1864027010518066,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.6000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 42.39999999999973,
+    "meanRunS": 4.007142857142857,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.009489860974305
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.600000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.150000000000222,
+    "meanRunS": 3.5874999999999995,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.846545593187379
+   },
+   "divergenceRmsM": 19.82827625071853
+  },
+  {
+   "id": "test-28",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 5.55,
+    "firstLossReacquired": true,
+    "unobservedS": 25.350000000000225,
+    "meanRunS": 4.216666666666665,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.998784123805904
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 2.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 60.99999999999867,
+    "meanRunS": 14.625,
+    "reacquiredRuns": 3,
+    "minAgl": 2.0016547948517376,
+    "maxHSpeed": 5.054594627597047
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 5.55,
+    "firstLossReacquired": true,
+    "unobservedS": 28.45000000000027,
+    "meanRunS": 2.5416666666666665,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 15.991878434781501
+  },
+  {
+   "id": "test-29",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.400000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 62.2499999999986,
+    "meanRunS": 28.174999999999997,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.85,
+    "firstLossReacquired": true,
+    "unobservedS": 54.19999999999906,
+    "meanRunS": 16.333333333333332,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 7.999999999999999
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 60.29999999999871,
+    "meanRunS": 28.099999999999998,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8.010026403757012
+   },
+   "divergenceRmsM": 17.33465718941691
+  },
+  {
+   "id": "test-30",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 32.50000000000029,
+    "meanRunS": 4.4,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.999102051615997
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.3,
+    "firstLossReacquired": true,
+    "unobservedS": 41.99999999999975,
+    "meanRunS": 18.75,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 28.100000000000264,
+    "meanRunS": 4.4499999999999975,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.113354076612588
+   },
+   "divergenceRmsM": 32.85168330469441
+  },
+  {
+   "id": "test-31",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.250000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.70000000000026,
+    "meanRunS": 3.400000000000001,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.5,
+    "firstLossReacquired": true,
+    "unobservedS": 62.74999999999857,
+    "meanRunS": 14.787499999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 2.001542819157157,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.250000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 32.55000000000029,
+    "meanRunS": 4.380000000000003,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 31.88763469288158
+  },
+  {
+   "id": "test-32",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.75,
+    "firstLossReacquired": true,
+    "unobservedS": 61.799999999998626,
+    "meanRunS": 29.799999999999997,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.850000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 32.20000000000031,
+    "meanRunS": 4.587500000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 2.667454071257879,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.5,
+    "firstLossReacquired": true,
+    "unobservedS": 32.3000000000003,
+    "meanRunS": 6.5,
+    "reacquiredRuns": 3,
+    "minAgl": 2,
+    "maxHSpeed": 7.883689787168992
+   },
+   "divergenceRmsM": 26.439004760247023
+  },
+  {
+   "id": "test-33",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.9,
+    "firstLossReacquired": true,
+    "unobservedS": 55.79999999999897,
+    "meanRunS": 9.93,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.050000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.35000000000031,
+    "meanRunS": 3.325000000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.9,
+    "firstLossReacquired": true,
+    "unobservedS": 32.250000000000306,
+    "meanRunS": 3.0100000000000007,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 17.27249565115778
+  },
+  {
+   "id": "test-34",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7,
+    "firstLossReacquired": true,
+    "unobservedS": 61.54999999999864,
+    "meanRunS": 14.5375,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 8.600000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 20.75000000000016,
+    "meanRunS": 8.600000000000001,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0732528532568253,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7,
+    "firstLossReacquired": true,
+    "unobservedS": 70.69999999999813,
+    "meanRunS": 23.166666666666668,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 53.514030380820074
+  },
+  {
+   "id": "test-35",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 11.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 35.35000000000013,
+    "meanRunS": 4.35,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 13.35,
+    "firstLossReacquired": true,
+    "unobservedS": 54.249999999999055,
+    "meanRunS": 23.799999999999997,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8.097924278873474
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 47.24999999999945,
+    "meanRunS": 13.116666666666665,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.031409542476682
+   },
+   "divergenceRmsM": 35.543694871506496
+  },
+  {
+   "id": "test-36",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.9,
+    "firstLossReacquired": true,
+    "unobservedS": 24.750000000000217,
+    "meanRunS": 3.716666666666669,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.6,
+    "firstLossReacquired": true,
+    "unobservedS": 28.300000000000267,
+    "meanRunS": 6.349999999999997,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8.038317464293282
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.9,
+    "firstLossReacquired": true,
+    "unobservedS": 25.80000000000023,
+    "meanRunS": 3.9333333333333353,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 13.895328894856139
+  },
+  {
+   "id": "test-37",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.900000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 27.00000000000025,
+    "meanRunS": 6.150000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0691090425237455,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 7,
+    "firstLossTimeS": 6.3,
+    "firstLossReacquired": true,
+    "unobservedS": 35.30000000000013,
+    "meanRunS": 3.471428571428572,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 11.850000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 32.20000000000031,
+    "meanRunS": 6.8750000000000036,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 14.001396692620734
+  },
+  {
+   "id": "test-38",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 65.39999999999843,
+    "meanRunS": 31.525,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0097708589165784,
+    "maxHSpeed": 7.355412098697252
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 11.3,
+    "firstLossReacquired": true,
+    "unobservedS": 69.19999999999821,
+    "meanRunS": 33.125,
+    "reacquiredRuns": 1,
+    "minAgl": 3.025731552656222,
+    "maxHSpeed": 7.696498367648529
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 65.39999999999843,
+    "meanRunS": 31.525,
+    "reacquiredRuns": 1,
+    "minAgl": 2.004653209180887,
+    "maxHSpeed": 7.355412098697252
+   },
+   "divergenceRmsM": 0.14765292105470842
+  },
+  {
+   "id": "test-39",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.3,
+    "firstLossReacquired": true,
+    "unobservedS": 58.49999999999881,
+    "meanRunS": 10.65,
+    "reacquiredRuns": 4,
+    "minAgl": 3.032042933889416,
+    "maxHSpeed": 7.683092374789398
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.1499999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 26.600000000000243,
+    "meanRunS": 3.2300000000000004,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.959971313109427
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.3,
+    "firstLossReacquired": true,
+    "unobservedS": 59.99999999999873,
+    "meanRunS": 13.8125,
+    "reacquiredRuns": 3,
+    "minAgl": 3.032042933889416,
+    "maxHSpeed": 7.683092374789398
+   },
+   "divergenceRmsM": 14.284268564132443
+  },
+  {
+   "id": "test-40",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 59.84999999999874,
+    "meanRunS": 28.624999999999996,
+    "reacquiredRuns": 1,
+    "minAgl": 2.2096076235018893,
+    "maxHSpeed": 7.8307624790238535
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.8,
+    "firstLossReacquired": true,
+    "unobservedS": 48.49999999999938,
+    "meanRunS": 10.087499999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 2.000537498175233,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.05000000000022,
+    "meanRunS": 5.699999999999997,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 40.61266094380489
+  },
+  {
+   "id": "test-41",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 30.100000000000293,
+    "meanRunS": 3.7875,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.023583761350594
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 71.89999999999999,
+    "firstLossReacquired": false,
+    "unobservedS": 71.84999999999806,
+    "meanRunS": 71.89999999999999,
+    "reacquiredRuns": 0,
+    "minAgl": 2.4840639982130313,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 31.550000000000313,
+    "meanRunS": 4.966666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 2,
+    "maxHSpeed": 8.023583761350594
+   },
+   "divergenceRmsM": 18.929108889661315
+  },
+  {
+   "id": "test-42",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 8.5,
+    "firstLossReacquired": true,
+    "unobservedS": 31.700000000000315,
+    "meanRunS": 3.4599999999999986,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.650000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 58.799999999998796,
+    "meanRunS": 27.775,
+    "reacquiredRuns": 1,
+    "minAgl": 2.195296131636418,
+    "maxHSpeed": 7.98111790930325
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 27.10000000000025,
+    "meanRunS": 5.516666666666668,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 40.738222639749786
+  },
+  {
+   "id": "test-43",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 13.45,
+    "firstLossReacquired": true,
+    "unobservedS": 40.29999999999985,
+    "meanRunS": 4.839999999999999,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.05,
+    "firstLossReacquired": true,
+    "unobservedS": 47.09999999999946,
+    "meanRunS": 20.799999999999997,
+    "reacquiredRuns": 1,
+    "minAgl": 2.522926750946539,
+    "maxHSpeed": 8.065020125883011
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 8.15,
+    "firstLossReacquired": true,
+    "unobservedS": 27.400000000000254,
+    "meanRunS": 4.329999999999998,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.003444693930685
+   },
+   "divergenceRmsM": 23.834056719755857
+  },
+  {
+   "id": "test-44",
+   "groups": [
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.15,
+    "firstLossReacquired": true,
+    "unobservedS": 24.800000000000217,
+    "meanRunS": 2.8375000000000017,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 5.850000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 57.34999999999888,
+    "meanRunS": 25.349999999999998,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.15,
+    "firstLossReacquired": true,
+    "unobservedS": 32.00000000000032,
+    "meanRunS": 3.1874999999999987,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 10.496532184297001
+  },
+  {
+   "id": "test-45",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 8.700000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 38.399999999999956,
+    "meanRunS": 5.799999999999999,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 53.199999999999115,
+    "meanRunS": 7.766666666666666,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.05,
+    "firstLossReacquired": true,
+    "unobservedS": 53.79999999999908,
+    "meanRunS": 17.2,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0007280281267272,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 50.69811953371781
+  },
+  {
+   "id": "test-46",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 33.35000000000024,
+    "meanRunS": 6.1333333333333355,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.2,
+    "firstLossReacquired": true,
+    "unobservedS": 61.74999999999863,
+    "meanRunS": 19.549999999999997,
+    "reacquiredRuns": 2,
+    "minAgl": 2.340317054875423,
+    "maxHSpeed": 7.3416783084124395
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 67.84999999999829,
+    "meanRunS": 32.55,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 7.978036148120881
+   },
+   "divergenceRmsM": 37.222624347218755
+  },
+  {
+   "id": "test-47",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 10.9,
+    "firstLossReacquired": true,
+    "unobservedS": 32.450000000000294,
+    "meanRunS": 4.269999999999998,
+    "reacquiredRuns": 5,
+    "minAgl": 2.9691527963224296,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 58.54999999999881,
+    "meanRunS": 25.949999999999996,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 9.85,
+    "firstLossReacquired": true,
+    "unobservedS": 37.699999999999996,
+    "meanRunS": 5.375,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 55.427758708065646
+  },
+  {
+   "id": "test-48",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 7,
+    "firstLossTimeS": 6.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 50.049999999999294,
+    "meanRunS": 5.421428571428571,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.993199007848529
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.4,
+    "firstLossReacquired": true,
+    "unobservedS": 25.250000000000224,
+    "meanRunS": 4.033333333333334,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 39.04999999999992,
+    "meanRunS": 6.125,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 32.202530300031
+  },
+  {
+   "id": "test-49",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 64.2499999999985,
+    "meanRunS": 30.775,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0067578489247717,
+    "maxHSpeed": 7.686380268973986
+   },
+   "kalmanExactStart": {
+    "lostRuns": 7,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 39.49999999999989,
+    "meanRunS": 4.614285714285714,
+    "reacquiredRuns": 7,
+    "minAgl": 2.208271652632975,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 64.2499999999985,
+    "meanRunS": 30.775,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0044761122116714,
+    "maxHSpeed": 7.686380268973986
+   },
+   "divergenceRmsM": 0.027705565992461125
+  },
+  {
+   "id": "test-50",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.35,
+    "firstLossReacquired": true,
+    "unobservedS": 43.74999999999965,
+    "meanRunS": 16.45,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.831579887585809
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 10.900000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 26.150000000000237,
+    "meanRunS": 10.900000000000002,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.35,
+    "firstLossReacquired": true,
+    "unobservedS": 26.35000000000024,
+    "meanRunS": 6.175,
+    "reacquiredRuns": 2,
+    "minAgl": 2.1713640461348884,
+    "maxHSpeed": 7.831579887585809
+   },
+   "divergenceRmsM": 5.421904358064633
+  },
+  {
+   "id": "test-51",
+   "groups": [
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.05000000000022,
+    "meanRunS": 7.900000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 11.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.850000000000232,
+    "meanRunS": 5.166666666666667,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.05000000000022,
+    "meanRunS": 7.900000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-52",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.2,
+    "firstLossReacquired": true,
+    "unobservedS": 28.800000000000274,
+    "meanRunS": 3.4333333333333313,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.965221921814873
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.150000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 23.250000000000195,
+    "meanRunS": 3.4875000000000016,
+    "reacquiredRuns": 4,
+    "minAgl": 2.0914232534107318,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.2,
+    "firstLossReacquired": true,
+    "unobservedS": 26.30000000000024,
+    "meanRunS": 3.9333333333333313,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 4.483984474747456
+  },
+  {
+   "id": "test-53",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.750000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 28.900000000000276,
+    "meanRunS": 4.3874999999999975,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.500000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 20.70000000000016,
+    "meanRunS": 3.266666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.750000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 25.500000000000227,
+    "meanRunS": 4.766666666666667,
+    "reacquiredRuns": 3,
+    "minAgl": 2.252412578737518,
+    "maxHSpeed": 7.97825760257112
+   },
+   "divergenceRmsM": 25.412010337471326
+  },
+  {
+   "id": "test-54",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 33.95000000000021,
+    "meanRunS": 5.525,
+    "reacquiredRuns": 4,
+    "minAgl": 2.1432606114441723,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.150000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.450000000000312,
+    "meanRunS": 3.379999999999998,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 40.44999999999984,
+    "meanRunS": 5.324999999999999,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.838651342970035
+   },
+   "divergenceRmsM": 40.7194247412327
+  },
+  {
+   "id": "test-55",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 15.250000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 39.19999999999991,
+    "meanRunS": 7.183333333333337,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.01424301245438
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 67.29999999999832,
+    "meanRunS": 32.95,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0007744949931885,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 14.049999999999999,
+    "firstLossReacquired": true,
+    "unobservedS": 67.6499999999983,
+    "meanRunS": 21.683333333333334,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0004079186893073,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 41.526799799734405
+  },
+  {
+   "id": "test-56",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 8,
+    "firstLossTimeS": 10.1,
+    "firstLossReacquired": true,
+    "unobservedS": 36.20000000000008,
+    "meanRunS": 3.1499999999999986,
+    "reacquiredRuns": 7,
+    "minAgl": 2.4462524940780557,
+    "maxHSpeed": 7.9341888383984935
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.550000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 53.09999999999912,
+    "meanRunS": 7.0666666666666655,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 10.05,
+    "firstLossReacquired": true,
+    "unobservedS": 31.95000000000032,
+    "meanRunS": 4.45,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 24.880865225056425
+  },
+  {
+   "id": "test-57",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.05,
+    "firstLossReacquired": true,
+    "unobservedS": 24.600000000000215,
+    "meanRunS": 3.733333333333332,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.016281714972854
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.2,
+    "firstLossReacquired": true,
+    "unobservedS": 29.400000000000283,
+    "meanRunS": 3.900000000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 2.401895940087993,
+    "maxHSpeed": 7.999999999999999
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.05,
+    "firstLossReacquired": true,
+    "unobservedS": 23.300000000000196,
+    "meanRunS": 4.466666666666669,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.016281714972854
+   },
+   "divergenceRmsM": 13.162195105524605
+  },
+  {
+   "id": "test-58",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 31.050000000000306,
+    "meanRunS": 6.516666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.800000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 32.950000000000266,
+    "meanRunS": 5.2,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 30.250000000000295,
+    "meanRunS": 3.350000000000002,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 20.187542797617688
+  },
+  {
+   "id": "test-59",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.900000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 33.75000000000022,
+    "meanRunS": 4.8,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.750000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 35.75000000000011,
+    "meanRunS": 4.262499999999999,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8,
+    "firstLossReacquired": true,
+    "unobservedS": 29.30000000000028,
+    "meanRunS": 5.150000000000001,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 61.30978700799873
+  },
+  {
+   "id": "test-60",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 6,
+    "firstLossTimeS": 8.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 40.59999999999983,
+    "meanRunS": 4.891666666666667,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 64.1499999999985,
+    "meanRunS": 30.924999999999997,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.500000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 27.20000000000025,
+    "meanRunS": 4.6000000000000005,
+    "reacquiredRuns": 3,
+    "minAgl": 2.1719413648848684,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 45.579419919102136
+  },
+  {
+   "id": "test-61",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 10.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 40.74999999999982,
+    "meanRunS": 5.9899999999999975,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.050000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 33.45000000000024,
+    "meanRunS": 3.899999999999996,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 10.350000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 26.250000000000238,
+    "meanRunS": 6.375000000000001,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 18.22789392664444
+  },
+  {
+   "id": "test-62",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 55.54999999999898,
+    "meanRunS": 23.8,
+    "reacquiredRuns": 1,
+    "minAgl": 2.3678032902895683,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.550000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 57.049999999998896,
+    "meanRunS": 26.574999999999996,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.450000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 23.900000000000205,
+    "meanRunS": 5.6000000000000005,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.013189474704339
+   },
+   "divergenceRmsM": 41.571476532392595
+  },
+  {
+   "id": "test-63",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 6,
+    "firstLossTimeS": 9.850000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 47.59999999999943,
+    "meanRunS": 7.216666666666666,
+    "reacquiredRuns": 5,
+    "minAgl": 2.006545565451452,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.05,
+    "firstLossReacquired": true,
+    "unobservedS": 22.05000000000018,
+    "meanRunS": 2.970000000000001,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 10.55,
+    "firstLossReacquired": true,
+    "unobservedS": 38.99999999999992,
+    "meanRunS": 4.235714285714286,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 39.050740174322925
+  },
+  {
+   "id": "test-64",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 57.14999999999889,
+    "meanRunS": 12.2625,
+    "reacquiredRuns": 3,
+    "minAgl": 2.009053501012505,
+    "maxHSpeed": 7.981506977066961
+   },
+   "kalmanExactStart": {
+    "lostRuns": 1,
+    "firstLossTimeS": 10.9,
+    "firstLossReacquired": true,
+    "unobservedS": 23.850000000000204,
+    "meanRunS": 10.9,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 58.449999999998816,
+    "meanRunS": 12.599999999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 2.0064303019375824,
+    "maxHSpeed": 7.981506977066961
+   },
+   "divergenceRmsM": 0.00667486186237292
+  },
+  {
+   "id": "test-65",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.700000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.400000000000254,
+    "meanRunS": 5.133333333333334,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.35,
+    "firstLossReacquired": true,
+    "unobservedS": 68.04999999999828,
+    "meanRunS": 22.649999999999995,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.500000000000313,
+    "meanRunS": 3.5125,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 32.27892432997637
+  },
+  {
+   "id": "test-66",
+   "groups": [
+    "hide",
+    "turn",
+    "long"
+   ],
+   "kalman": {
+    "lostRuns": 1,
+    "firstLossTimeS": 69.45,
+    "firstLossReacquired": false,
+    "unobservedS": 69.3999999999982,
+    "meanRunS": 69.45,
+    "reacquiredRuns": 0,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 4.5,
+    "firstLossReacquired": true,
+    "unobservedS": 18.800000000000132,
+    "meanRunS": 2.525000000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 16.75,
+    "firstLossReacquired": true,
+    "unobservedS": 36.95000000000004,
+    "meanRunS": 6.8,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 20.366847277360467
+  },
+  {
+   "id": "test-67",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.85,
+    "firstLossReacquired": true,
+    "unobservedS": 34.45000000000018,
+    "meanRunS": 3.6785714285714275,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.950000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 34.700000000000166,
+    "meanRunS": 4.825000000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.98900236721358
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.75000000000023,
+    "meanRunS": 3.2124999999999995,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 7.715322024706419
+   },
+   "divergenceRmsM": 28.10004324912983
+  },
+  {
+   "id": "test-68",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 1,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 20.85000000000016,
+    "meanRunS": 7.15,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.050000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 31.000000000000306,
+    "meanRunS": 4.1,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 1,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 20.85000000000016,
+    "meanRunS": 7.15,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-69",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.15,
+    "firstLossReacquired": true,
+    "unobservedS": 26.150000000000237,
+    "meanRunS": 3.949999999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 2.3935596037887708,
+    "maxHSpeed": 7.723124022053396
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.75,
+    "firstLossReacquired": true,
+    "unobservedS": 22.95000000000019,
+    "meanRunS": 5.900000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 6.15,
+    "firstLossReacquired": true,
+    "unobservedS": 33.500000000000234,
+    "meanRunS": 3.078571428571426,
+    "reacquiredRuns": 6,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 10.767775254151552
+  },
+  {
+   "id": "test-70",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.000000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 69.89999999999817,
+    "meanRunS": 23.349999999999998,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.512227766679263
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 5.700000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 30.900000000000304,
+    "meanRunS": 7.300000000000002,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.000000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 29.30000000000028,
+    "meanRunS": 3.2875000000000005,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 7.837020095405031
+   },
+   "divergenceRmsM": 34.37228298500004
+  },
+  {
+   "id": "test-71",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.700000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.75000000000026,
+    "meanRunS": 6.925,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.500000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 23.150000000000194,
+    "meanRunS": 3.5500000000000007,
+    "reacquiredRuns": 3,
+    "minAgl": 2.3781862339062094,
+    "maxHSpeed": 7.996409788465872
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.700000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.75000000000026,
+    "meanRunS": 6.925,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-72",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.25,
+    "firstLossReacquired": true,
+    "unobservedS": 53.79999999999908,
+    "meanRunS": 24.075,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.199999999999999,
+    "firstLossReacquired": true,
+    "unobservedS": 31.150000000000308,
+    "meanRunS": 4.866666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.25,
+    "firstLossReacquired": true,
+    "unobservedS": 35.40000000000013,
+    "meanRunS": 9.216666666666669,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 22.734027532703088
+  },
+  {
+   "id": "test-73",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 16.400000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 34.900000000000155,
+    "meanRunS": 4.840000000000001,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.900000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 35.70000000000011,
+    "meanRunS": 5.3100000000000005,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 13.65,
+    "firstLossReacquired": true,
+    "unobservedS": 37.6,
+    "meanRunS": 8.183333333333332,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.976285294461388
+   },
+   "divergenceRmsM": 17.738997433617392
+  },
+  {
+   "id": "test-74",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 59.64999999999875,
+    "meanRunS": 27.45,
+    "reacquiredRuns": 1,
+    "minAgl": 2.0969411571005914,
+    "maxHSpeed": 8.033316120261267
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.3,
+    "firstLossReacquired": true,
+    "unobservedS": 55.44999999999899,
+    "meanRunS": 16.650000000000002,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.45,
+    "firstLossReacquired": true,
+    "unobservedS": 26.50000000000024,
+    "meanRunS": 5.1,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 16.742783869271076
+  },
+  {
+   "id": "test-75",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.5,
+    "firstLossReacquired": true,
+    "unobservedS": 30.7000000000003,
+    "meanRunS": 3.5500000000000007,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 7,
+    "firstLossTimeS": 8.100000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 34.200000000000195,
+    "meanRunS": 3.257142857142856,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.5,
+    "firstLossReacquired": true,
+    "unobservedS": 33.850000000000215,
+    "meanRunS": 3.762500000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 13.167331663230858
+  },
+  {
+   "id": "test-76",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 1,
+    "firstLossTimeS": 8.75,
+    "firstLossReacquired": true,
+    "unobservedS": 25.65000000000023,
+    "meanRunS": 8.75,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.997887919738223
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 33.10000000000026,
+    "meanRunS": 5.8500000000000005,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.150000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 27.70000000000026,
+    "meanRunS": 5.350000000000001,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0497621527934378,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 18.516832316044535
+  },
+  {
+   "id": "test-77",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.05,
+    "firstLossReacquired": true,
+    "unobservedS": 40.94999999999981,
+    "meanRunS": 5.969999999999997,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.6000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 36.10000000000009,
+    "meanRunS": 4.000000000000002,
+    "reacquiredRuns": 5,
+    "minAgl": 2.0819619009625225,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 7,
+    "firstLossTimeS": 7.05,
+    "firstLossReacquired": true,
+    "unobservedS": 31.20000000000031,
+    "meanRunS": 3.1,
+    "reacquiredRuns": 7,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 65.30717233210461
+  },
+  {
+   "id": "test-78",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 10.05,
+    "firstLossReacquired": true,
+    "unobservedS": 28.950000000000276,
+    "meanRunS": 5.766666666666668,
+    "reacquiredRuns": 3,
+    "minAgl": 2,
+    "maxHSpeed": 7.949537247988206
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 5.65,
+    "firstLossReacquired": true,
+    "unobservedS": 66.94999999999834,
+    "meanRunS": 32.975,
+    "reacquiredRuns": 1,
+    "minAgl": 2.1865930527566997,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 1,
+    "firstLossTimeS": 9.25,
+    "firstLossReacquired": true,
+    "unobservedS": 28.150000000000265,
+    "meanRunS": 9.25,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 16.819352556458956
+  },
+  {
+   "id": "test-79",
+   "groups": [
+    "hide",
+    "turn",
+    "long"
+   ],
+   "kalman": {
+    "lostRuns": 1,
+    "firstLossTimeS": 67.95,
+    "firstLossReacquired": false,
+    "unobservedS": 67.89999999999829,
+    "meanRunS": 67.95,
+    "reacquiredRuns": 0,
+    "minAgl": 2.073447663667799,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 4,
+    "firstLossReacquired": true,
+    "unobservedS": 67.7499999999983,
+    "meanRunS": 33.474999999999994,
+    "reacquiredRuns": 1,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 8.600000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 27.550000000000257,
+    "meanRunS": 7.399999999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 43.59123649800322
+  },
+  {
+   "id": "test-80",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 2,
+    "firstLossTimeS": 20.3,
+    "firstLossReacquired": true,
+    "unobservedS": 33.80000000000022,
+    "meanRunS": 11.075000000000001,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.85,
+    "firstLossReacquired": true,
+    "unobservedS": 31.20000000000031,
+    "meanRunS": 7.399999999999999,
+    "reacquiredRuns": 2,
+    "minAgl": 2.0470190339590375,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 8.95,
+    "firstLossReacquired": true,
+    "unobservedS": 28.300000000000267,
+    "meanRunS": 5.749999999999998,
+    "reacquiredRuns": 2,
+    "minAgl": 2.050333300737857,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 32.42127715895403
+  },
+  {
+   "id": "test-81",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.65,
+    "firstLossReacquired": true,
+    "unobservedS": 29.550000000000285,
+    "meanRunS": 3.912500000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.35,
+    "firstLossReacquired": true,
+    "unobservedS": 28.000000000000263,
+    "meanRunS": 4.174999999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.35,
+    "firstLossReacquired": true,
+    "unobservedS": 34.200000000000195,
+    "meanRunS": 8.216666666666667,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 13.789133416951747
+  },
+  {
+   "id": "test-82",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.900000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 41.399999999999785,
+    "meanRunS": 10.516666666666664,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8.005841677938408
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 53.4499999999991,
+    "meanRunS": 9.34,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000641691195064
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.900000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 41.399999999999785,
+    "meanRunS": 10.516666666666664,
+    "reacquiredRuns": 2,
+    "minAgl": 2,
+    "maxHSpeed": 8.005841677938408
+   },
+   "divergenceRmsM": 2.2264217983753903e-7
+  },
+  {
+   "id": "test-83",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 11.55,
+    "firstLossReacquired": true,
+    "unobservedS": 34.25000000000019,
+    "meanRunS": 5.8374999999999995,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 10.3,
+    "firstLossReacquired": true,
+    "unobservedS": 32.950000000000266,
+    "meanRunS": 3.6999999999999993,
+    "reacquiredRuns": 5,
+    "minAgl": 2.535595154530682,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 11.5,
+    "firstLossReacquired": true,
+    "unobservedS": 29.30000000000028,
+    "meanRunS": 5.6125,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 55.21188340608289
+  },
+  {
+   "id": "test-84",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 34.900000000000155,
+    "meanRunS": 4.909999999999998,
+    "reacquiredRuns": 4,
+    "minAgl": 2.3925363574781215,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.45,
+    "firstLossReacquired": true,
+    "unobservedS": 29.15000000000028,
+    "meanRunS": 4.025000000000001,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 9,
+    "firstLossTimeS": 6.300000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 37.79999999999999,
+    "meanRunS": 2.9944444444444454,
+    "reacquiredRuns": 9,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 14.739787466406902
+  },
+  {
+   "id": "test-85",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 8,
+    "firstLossTimeS": 6.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 33.55000000000023,
+    "meanRunS": 2.3812499999999996,
+    "reacquiredRuns": 8,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.050000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 34.95000000000015,
+    "meanRunS": 9.516666666666667,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 8,
+    "firstLossTimeS": 6.200000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 28.900000000000276,
+    "meanRunS": 2.6812500000000004,
+    "reacquiredRuns": 8,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 14.29172508466518
+  },
+  {
+   "id": "test-86",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 29.85000000000029,
+    "meanRunS": 4.262500000000001,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.1,
+    "firstLossReacquired": true,
+    "unobservedS": 44.34999999999962,
+    "meanRunS": 7.26,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.5,
+    "firstLossReacquired": true,
+    "unobservedS": 29.95000000000029,
+    "meanRunS": 3.933333333333335,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 21.22521625852404
+  },
+  {
+   "id": "test-87",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 9.9,
+    "firstLossReacquired": true,
+    "unobservedS": 32.00000000000032,
+    "meanRunS": 4.649999999999999,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.010107987471097
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 4.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 57.249999999998884,
+    "meanRunS": 10.529999999999998,
+    "reacquiredRuns": 4,
+    "minAgl": 2.000878008943295,
+    "maxHSpeed": 7.877884741925292
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.65,
+    "firstLossReacquired": true,
+    "unobservedS": 30.6500000000003,
+    "meanRunS": 5.2333333333333325,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 22.299496017599935
+  },
+  {
+   "id": "test-88",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 7.9,
+    "firstLossReacquired": true,
+    "unobservedS": 27.75000000000026,
+    "meanRunS": 3.8499999999999996,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 4,
+    "firstLossTimeS": 8.05,
+    "firstLossReacquired": true,
+    "unobservedS": 63.69999999999852,
+    "meanRunS": 15.212499999999999,
+    "reacquiredRuns": 3,
+    "minAgl": 2.001584869567097,
+    "maxHSpeed": 7.889493084635766
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.9,
+    "firstLossReacquired": true,
+    "unobservedS": 36.150000000000084,
+    "meanRunS": 5.900000000000002,
+    "reacquiredRuns": 4,
+    "minAgl": 2.1302939564336327,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 27.491617305600755
+  },
+  {
+   "id": "test-89",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 5.449999999999999,
+    "firstLossReacquired": true,
+    "unobservedS": 33.500000000000234,
+    "meanRunS": 4.0625,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 5.250000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.65000000000023,
+    "meanRunS": 3.2300000000000004,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 5.449999999999999,
+    "firstLossReacquired": true,
+    "unobservedS": 24.850000000000218,
+    "meanRunS": 2.79,
+    "reacquiredRuns": 5,
+    "minAgl": 2.8353794437207016,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 20.601053681731848
+  },
+  {
+   "id": "test-90",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.8999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 48.949999999999356,
+    "meanRunS": 8.23,
+    "reacquiredRuns": 4,
+    "minAgl": 2.0003397782658388,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 9.15,
+    "firstLossReacquired": true,
+    "unobservedS": 58.89999999999879,
+    "meanRunS": 28.399999999999995,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.8999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 35.9000000000001,
+    "meanRunS": 4.466666666666664,
+    "reacquiredRuns": 6,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 45.14879421099754
+  },
+  {
+   "id": "test-91",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 21.25,
+    "firstLossReacquired": true,
+    "unobservedS": 56.549999999998924,
+    "meanRunS": 13.037499999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.99709179598055
+   },
+   "kalmanExactStart": {
+    "lostRuns": 3,
+    "firstLossTimeS": 9.55,
+    "firstLossReacquired": true,
+    "unobservedS": 28.300000000000267,
+    "meanRunS": 5.066666666666666,
+    "reacquiredRuns": 3,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 8.85,
+    "firstLossReacquired": true,
+    "unobservedS": 34.75000000000016,
+    "meanRunS": 3.9599999999999995,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 60.334917541130245
+  },
+  {
+   "id": "test-92",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.8999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 55.79999999999897,
+    "meanRunS": 16.399999999999995,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.799999999999999,
+    "firstLossReacquired": true,
+    "unobservedS": 34.65000000000017,
+    "meanRunS": 4.009999999999998,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 6,
+    "firstLossTimeS": 6.8999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 31.800000000000317,
+    "meanRunS": 3.183333333333333,
+    "reacquiredRuns": 6,
+    "minAgl": 2.1331054747981875,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 46.23308525548823
+  },
+  {
+   "id": "test-93",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.3,
+    "firstLossReacquired": true,
+    "unobservedS": 41.599999999999774,
+    "meanRunS": 10.233333333333333,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 6.1000000000000005,
+    "firstLossReacquired": true,
+    "unobservedS": 28.000000000000263,
+    "meanRunS": 3.1300000000000003,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.3,
+    "firstLossReacquired": true,
+    "unobservedS": 51.799999999999194,
+    "meanRunS": 22.599999999999998,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 3.168214583391473
+  },
+  {
+   "id": "test-94",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 2.75,
+    "firstLossReacquired": true,
+    "unobservedS": 31.800000000000317,
+    "meanRunS": 4.966666666666669,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 3.8999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 26.35000000000024,
+    "meanRunS": 3.141666666666664,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.515875175084647
+   },
+   "ml": {
+    "lostRuns": 3,
+    "firstLossTimeS": 2.75,
+    "firstLossReacquired": true,
+    "unobservedS": 31.800000000000317,
+    "meanRunS": 4.966666666666669,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "divergenceRmsM": 0
+  },
+  {
+   "id": "test-95",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.65,
+    "firstLossReacquired": true,
+    "unobservedS": 39.24999999999991,
+    "meanRunS": 7.75,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 7.1,
+    "firstLossReacquired": true,
+    "unobservedS": 37.45000000000001,
+    "meanRunS": 3.724999999999999,
+    "reacquiredRuns": 6,
+    "minAgl": 2,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.65,
+    "firstLossReacquired": true,
+    "unobservedS": 71.79999999999806,
+    "meanRunS": 35.95,
+    "reacquiredRuns": 1,
+    "minAgl": 3.8261392559958756,
+    "maxHSpeed": 6.691970573834727
+   },
+   "divergenceRmsM": 27.03128561095721
+  },
+  {
+   "id": "test-96",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 6,
+    "firstLossTimeS": 6.550000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 44.84999999999959,
+    "meanRunS": 5.433333333333333,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 7.743891684824747
+   },
+   "kalmanExactStart": {
+    "lostRuns": 8,
+    "firstLossTimeS": 6.2,
+    "firstLossReacquired": true,
+    "unobservedS": 35.10000000000014,
+    "meanRunS": 3.274999999999999,
+    "reacquiredRuns": 7,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8
+   },
+   "ml": {
+    "lostRuns": 4,
+    "firstLossTimeS": 6.550000000000002,
+    "firstLossReacquired": true,
+    "unobservedS": 26.900000000000247,
+    "meanRunS": 3.0874999999999995,
+    "reacquiredRuns": 4,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 18.690340237158775
+  },
+  {
+   "id": "test-97",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 3,
+    "firstLossTimeS": 6.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 26.100000000000236,
+    "meanRunS": 3.5000000000000013,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 6,
+    "firstLossTimeS": 6.65,
+    "firstLossReacquired": true,
+    "unobservedS": 36.10000000000009,
+    "meanRunS": 4.174999999999998,
+    "reacquiredRuns": 6,
+    "minAgl": 2.0630764137667246,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 2,
+    "firstLossTimeS": 6.800000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 25.450000000000227,
+    "meanRunS": 4.65,
+    "reacquiredRuns": 2,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 12.334223766527396
+  },
+  {
+   "id": "test-98",
+   "groups": [
+    "hide",
+    "turn",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 31.500000000000313,
+    "meanRunS": 3.8249999999999997,
+    "reacquiredRuns": 4,
+    "minAgl": 2.6418122006532707,
+    "maxHSpeed": 8
+   },
+   "kalmanExactStart": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 28.100000000000264,
+    "meanRunS": 3.1100000000000003,
+    "reacquiredRuns": 5,
+    "minAgl": 2,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.15,
+    "firstLossReacquired": true,
+    "unobservedS": 28.50000000000027,
+    "meanRunS": 3.640000000000002,
+    "reacquiredRuns": 5,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 7.835221860658623
+   },
+   "divergenceRmsM": 20.06273503282754
+  },
+  {
+   "id": "test-99",
+   "groups": [
+    "hide",
+    "turn",
+    "long",
+    "reacq"
+   ],
+   "kalman": {
+    "lostRuns": 4,
+    "firstLossTimeS": 7.3999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 46.699999999999484,
+    "meanRunS": 10.037499999999998,
+    "reacquiredRuns": 3,
+    "minAgl": 1.9999999999999998,
+    "maxHSpeed": 8.000000000000002
+   },
+   "kalmanExactStart": {
+    "lostRuns": 2,
+    "firstLossTimeS": 7.000000000000001,
+    "firstLossReacquired": true,
+    "unobservedS": 62.39999999999859,
+    "meanRunS": 28.4,
+    "reacquiredRuns": 1,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "ml": {
+    "lostRuns": 5,
+    "firstLossTimeS": 7.3999999999999995,
+    "firstLossReacquired": true,
+    "unobservedS": 46.349999999999504,
+    "meanRunS": 8.29,
+    "reacquiredRuns": 4,
+    "minAgl": 1.9999999999999996,
+    "maxHSpeed": 8.000000000000002
+   },
+   "divergenceRmsM": 48.1952342693852
+  }
+ ]
+}

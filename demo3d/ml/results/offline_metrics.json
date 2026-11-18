@@ -1,0 +1,401 @@
+{
+  "evaluationRole": "DEVELOPMENT (train/val/test); the final claims are in final_audit_*.json",
+  "modelSha256": "6c530b90a72e79629afec6d31b364f339a546bab42f3a39fc544418b6521e8f2",
+  "datasetSha256": "8c19784a24a98ad346d455bbe09030cda9ce31c205ab220607918b79caa925ba",
+  "sourceSha256": "435706772150a223547eebf828e8330e31c4a84a90caf6e5c357673afa8d782a",
+  "featureSchemaSha256": "5566134300fcdaaf440084acb83b79f4d832738b7549dea2841aea344c04ec5c",
+  "profile": "local",
+  "device": "cpu",
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_nll": 4.981563030875745,
+      "val_nll": 4.033506393432617,
+      "best": true
+    },
+    {
+      "epoch": 2,
+      "train_nll": 4.073171347100281,
+      "val_nll": 3.934051036834717,
+      "best": true
+    },
+    {
+      "epoch": 3,
+      "train_nll": 3.892383233739713,
+      "val_nll": 3.986952543258667
+    },
+    {
+      "epoch": 4,
+      "train_nll": 3.757535191926142,
+      "val_nll": 4.040015697479248
+    },
+    {
+      "epoch": 5,
+      "train_nll": 3.6543196829201574,
+      "val_nll": 4.005262851715088
+    },
+    {
+      "epoch": 6,
+      "train_nll": 3.5447747640651373,
+      "val_nll": 4.001217365264893
+    }
+  ],
+  "onnx_vs_torch_max_abs_diff_200_test_samples": 8.344650268554688e-07,
+  "parity_fixture_max_abs_diff": 2.0116567611694336e-07,
+  "splits": {
+    "train": {
+      "worldSeeds": [
+        1000,
+        1899
+      ],
+      "subjectSeeds": [
+        5000,
+        5899
+      ],
+      "episodes": 900,
+      "samples": 28220,
+      "truthOutsideGrid": 274
+    },
+    "val": {
+      "worldSeeds": [
+        20000,
+        20059
+      ],
+      "subjectSeeds": [
+        25000,
+        25059
+      ],
+      "episodes": 60,
+      "samples": 1826,
+      "truthOutsideGrid": 15
+    },
+    "test": {
+      "worldSeeds": [
+        40000,
+        40099
+      ],
+      "subjectSeeds": [
+        45000,
+        45099
+      ],
+      "episodes": 100,
+      "samples": 2946,
+      "truthOutsideGrid": 10
+    }
+  },
+  "offline_test": {
+    "all": {
+      "samples": 2946,
+      "episodes": 100,
+      "truth_outside_grid": 10,
+      "nll_nats_ml": 3.8816072171616662,
+      "nll_nats_tracker_gaussian_uncalibrated": 11.484217170462816,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 2946,
+        "mean": 12.496425516103121,
+        "median": 7.934926789303062,
+        "p90": 30.683217759950526
+      },
+      "err_m_ml_map_cell": {
+        "n": 2946,
+        "mean": 13.84828224331627,
+        "median": 7.893715057836603,
+        "p90": 33.42893333091129
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 2946,
+        "mean": 9.34652487414537,
+        "median": 5.729662587520119,
+        "p90": 20.090493256989603
+      },
+      "err_m_kalman_point": {
+        "n": 2946,
+        "mean": 37.594275768325744,
+        "median": 13.513769842229612,
+        "p90": 117.45277959647149
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9653767820773931,
+        "mean_area_m2": 2505.069925322471
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.957909029192125,
+        "mean_area_m2": 2348.763068567549,
+        "median_area_m2": 816.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.15071283095723015
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9517990495587237,
+        "mean_area_m2": 167089.06151018824,
+        "median_area_m2": 3623.933171556768
+      },
+      "mean_peaks_ge10pct": 1.6171079429735233,
+      "frac_two_or_more_peaks_ge10pct": 0.4979633401221996
+    },
+    "hide": {
+      "samples": 486,
+      "episodes": 93,
+      "truth_outside_grid": 0,
+      "nll_nats_ml": 3.8215016108792925,
+      "nll_nats_tracker_gaussian_uncalibrated": 11.663582709211878,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 486,
+        "mean": 10.834271137045583,
+        "median": 7.127467278202877,
+        "p90": 23.932854388084763
+      },
+      "err_m_ml_map_cell": {
+        "n": 486,
+        "mean": 12.503093024158225,
+        "median": 8.0393518758553,
+        "p90": 25.479381851785853
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 486,
+        "mean": 8.40633012768194,
+        "median": 5.552909054292622,
+        "p90": 15.671474496724617
+      },
+      "err_m_kalman_point": {
+        "n": 486,
+        "mean": 28.663505259463008,
+        "median": 14.254528169689571,
+        "p90": 78.69882653649812
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9835390946502057,
+        "mean_area_m2": 2253.662551440329
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9753086419753086,
+        "mean_area_m2": 2110.8477366255142,
+        "median_area_m2": 920.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.17695473251028807
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9794238683127572,
+        "mean_area_m2": 76580.67063820135,
+        "median_area_m2": 5378.406322128973
+      },
+      "mean_peaks_ge10pct": 1.7078189300411524,
+      "frac_two_or_more_peaks_ge10pct": 0.5679012345679012
+    },
+    "turn": {
+      "samples": 2290,
+      "episodes": 100,
+      "truth_outside_grid": 10,
+      "nll_nats_ml": 4.370181126813249,
+      "nll_nats_tracker_gaussian_uncalibrated": 12.231215640427035,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 2290,
+        "mean": 15.1412129848703,
+        "median": 10.807183175865063,
+        "p90": 34.473242803206105
+      },
+      "err_m_ml_map_cell": {
+        "n": 2290,
+        "mean": 16.630076746570303,
+        "median": 10.77278854795448,
+        "p90": 38.72099511198506
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 2290,
+        "mean": 10.978116623384736,
+        "median": 6.77624935389664,
+        "p90": 24.055890624705054
+      },
+      "err_m_kalman_point": {
+        "n": 2290,
+        "mean": 46.75553180414859,
+        "median": 21.999649329208488,
+        "p90": 129.33533643819342
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9637554585152839,
+        "mean_area_m2": 3128.9781659388645
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9550218340611354,
+        "mean_area_m2": 2934.749344978166,
+        "median_area_m2": 1488.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.15327510917030568
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9606986899563319,
+        "mean_area_m2": 214780.71774230566,
+        "median_area_m2": 10314.7935083711
+      },
+      "mean_peaks_ge10pct": 1.7427947598253275,
+      "frac_two_or_more_peaks_ge10pct": 0.596943231441048
+    },
+    "long": {
+      "samples": 1202,
+      "episodes": 66,
+      "truth_outside_grid": 10,
+      "nll_nats_ml": 5.35125909554777,
+      "nll_nats_tracker_gaussian_uncalibrated": 11.999538718670232,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 1202,
+        "mean": 22.717398377177314,
+        "median": 20.05106510221902,
+        "p90": 43.49524945751855
+      },
+      "err_m_ml_map_cell": {
+        "n": 1202,
+        "mean": 25.270696245490907,
+        "median": 19.25664512595256,
+        "p90": 53.0519991304535
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 1202,
+        "mean": 16.139228741892705,
+        "median": 11.554913477714221,
+        "p90": 36.3026931723571
+      },
+      "err_m_kalman_point": {
+        "n": 1202,
+        "mean": 79.98878483990411,
+        "median": 70.45210869960674,
+        "p90": 156.32050338751424
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9725457570715474,
+        "mean_area_m2": 5425.277870216306
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9650582362728786,
+        "mean_area_m2": 5087.840266222962,
+        "median_area_m2": 5072.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.16555740432612312
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9991680532445923,
+        "mean_area_m2": 407248.40588487155,
+        "median_area_m2": 134955.7128853258
+      },
+      "mean_peaks_ge10pct": 1.9742096505823628,
+      "frac_two_or_more_peaks_ge10pct": 0.7512479201331115
+    },
+    "reacq": {
+      "samples": 1318,
+      "episodes": 97,
+      "truth_outside_grid": 0,
+      "nll_nats_ml": 3.0786614085337893,
+      "nll_nats_tracker_gaussian_uncalibrated": 10.399791615567018,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 1318,
+        "mean": 6.258211443656446,
+        "median": 4.802817711097324,
+        "p90": 12.19013484648214
+      },
+      "err_m_ml_map_cell": {
+        "n": 1318,
+        "mean": 7.077515566173402,
+        "median": 4.979205208644166,
+        "p90": 13.750354292222525
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 1318,
+        "mean": 5.302036193862955,
+        "median": 4.400055195347817,
+        "p90": 9.318719315273935
+      },
+      "err_m_kalman_point": {
+        "n": 1318,
+        "mean": 9.237100183287021,
+        "median": 7.11520303339789,
+        "p90": 18.27499037424063
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9635811836115327,
+        "mean_area_m2": 751.2837632776934
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9552352048558422,
+        "mean_area_m2": 701.8512898330804,
+        "median_area_m2": 416.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.19726858877086495
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9658573596358119,
+        "mean_area_m2": 4585.311916913978,
+        "median_area_m2": 1025.9082762123676
+      },
+      "mean_peaks_ge10pct": 1.417298937784522,
+      "frac_two_or_more_peaks_ge10pct": 0.36798179059180575
+    },
+    "_calibration": {
+      "ml_region_mass_level": 0.940534,
+      "kalman_radius_scale": 5.0816,
+      "raw_ml_95_mass_coverage_all": 0.9653767820773931
+    },
+    "_val_reference": {
+      "samples": 1826,
+      "episodes": 60,
+      "truth_outside_grid": 15,
+      "nll_nats_ml": 3.9340511720435387,
+      "nll_nats_tracker_gaussian_uncalibrated": 12.13903666763327,
+      "nll_nats_uniform": 6.931471805599453,
+      "err_m_ml_mean_estimate": {
+        "n": 1826,
+        "mean": 11.797932108442337,
+        "median": 8.074160623176438,
+        "p90": 26.849094266514083
+      },
+      "err_m_ml_map_cell": {
+        "n": 1826,
+        "mean": 13.407631105866614,
+        "median": 8.306004706168295,
+        "p90": 30.259681361912044
+      },
+      "err_m_ml_best_of_top3_peaks": {
+        "n": 1826,
+        "mean": 9.847771744576818,
+        "median": 5.848288443667069,
+        "p90": 22.333629142241822
+      },
+      "err_m_kalman_point": {
+        "n": 1826,
+        "mean": 43.64049905978318,
+        "median": 15.15163281474788,
+        "p90": 123.46488936785036
+      },
+      "region95_raw_ml": {
+        "coverage": 0.9605695509309967,
+        "mean_area_m2": 2658.7513691128147
+      },
+      "region95_calibrated_ml": {
+        "coverage": 0.9507119386637459,
+        "mean_area_m2": 2493.2048192771085,
+        "median_area_m2": 960.0
+      },
+      "region95_raw_kalman_ellipse": {
+        "coverage": 0.1248630887185104
+      },
+      "region95_calibrated_kalman": {
+        "coverage": 0.9507119386637459,
+        "mean_area_m2": 142111.165693715,
+        "median_area_m2": 4590.457679097797
+      },
+      "mean_peaks_ge10pct": 1.6730558598028478,
+      "frac_two_or_more_peaks_ge10pct": 0.5169769989047097
+    }
+  },
+  "model_bytes": 256739,
+  "parameters": 62913
+}
